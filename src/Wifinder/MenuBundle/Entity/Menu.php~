@@ -1,0 +1,99 @@
+<?php
+
+//src/Apollo/MenuBundle/Entity/Menu.php
+
+namespace Apollo\MenuBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ */
+class Menu {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=100, unique=true)
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="string", length=100, unique=true)
+     */
+    protected $alias;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $is_active = true;
+    
+    /**
+    * @ORM\OneToMany(
+     *   targetEntity="MenuItem", 
+     *   mappedBy="menu", 
+     *   cascade={"persist", "remove"})
+    */
+    protected $items;
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Menu
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set alias
+     *
+     * @param string $alias
+     * @return Menu
+     */
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
+    
+        return $this;
+    }
+
+    /**
+     * Get alias
+     *
+     * @return string 
+     */
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+}

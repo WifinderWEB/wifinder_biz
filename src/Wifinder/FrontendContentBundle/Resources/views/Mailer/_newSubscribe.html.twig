@@ -1,0 +1,32 @@
+<form id="subscribe">
+    <label for="">{% trans from "content" %}Subscribe{% endtrans %}<br>{% trans from "content" %}to news{% endtrans %}</label>
+    <div class="input-append">
+        <input type="email" id="subscribetype_email" required="required" max_length="100" placeholder="E-mail address">
+        <button class="btn" type="button" id="button_subscribe_form"><img src="/images/enter.png" alt="submit"/></button>
+    </div>
+</form>
+
+<div id="subscribeModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">{% trans from 'content'%}Form subscribe to news{% endtrans %}</h3>
+    </div>
+    <div class="modal-body">
+        <form action="{{ path('frontend_mailer_subscribe')}}" {{ form_enctype(form) }} id="subscribe_form">
+            <div>
+                {{form_errors(form.email) }}
+                {{ form_widget(form.email) }}
+            </div>
+            <div>
+                {{form_errors(form.captcha) }}
+                {{ form_widget(form.captcha) }}
+            </div>
+                {{ form_widget(form._token) }}
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-NNWelcome" id="button_subscribe_modal_form" onclick="Frontend.submitModalSubscribe(this)">
+            <i class="icon-ok"></i> {% trans from "content" %}Submit{% endtrans %}
+        </button>
+    </div>
+</div>

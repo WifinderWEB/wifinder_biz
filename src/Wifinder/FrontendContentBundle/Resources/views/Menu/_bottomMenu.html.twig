@@ -1,0 +1,17 @@
+<div class="navbar">
+    <ul class="nav">
+        {% for item in items %}
+            {% set class = '' %}
+            {% if app.request.requesturi == item.link %}
+                {% set class = ' active' %}
+            {% endif %}
+            
+            <li class="item{{class}}">
+                <a href="{{ item.link|localeLink }}">{{ item.title }}</a>
+            </li>
+            {% if loop.length != loop.index %}
+            <li class="separator"> | </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>

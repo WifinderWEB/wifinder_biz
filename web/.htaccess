@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    #<IfModule mod_vhost_alias.c>
+    #    RewriteBase /
+    #</IfModule>
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ app.php [QSA,L]
+
+    RewriteEngine on
+    RewriteCond %{HTTP_REFERER} ^http(s)?://(www\.)?semalt.com.*$ [NC]
+    RewriteRule .* http://semalt.com [L]
+
+    RewriteEngine on
+    RewriteCond %{HTTP_REFERER} ^http(s)?://(www\.)?semalt.semalt.com.*$ [NC]
+    RewriteRule .* http://semalt.com [L]
+
+    RewriteEngine on
+    RewriteCond %{HTTP_REFERER} ^http(s)?://(www\.)?crawler.semalt.com.*$ [NC]
+    RewriteRule .* http://semalt.com [L]
+
+</IfModule>
+
+

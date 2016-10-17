@@ -1,0 +1,12 @@
+{% if images | length > 1 %}
+    <h2>{% trans from 'content' %}NEWS IMAGES{% endtrans %}</h2>
+    <ul class="thumbnails">
+        {% for image in images%}
+            <li>
+                <a class="thumbnail" href="{{image.webPath}}" rel="prettyPhoto[admin_image]" title="{{image.description}}">
+                   <img src="{{image.webPath | apply_filter('150x150_thumb')}}" alt="{{image.title}}"/>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

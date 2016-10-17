@@ -1,0 +1,26 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans with {'%title%' : entity.title } from "admin" %}Image Category "%title%" edit{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans with {'%title%' : entity.title } from "admin" %}Image Category "%title%" edit{% endtrans %}{% endblock %}
+
+{% block content %}
+    <form action="{{ path('admin_image_gallery_category_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}  class="main_form">
+        {{ form_row(edit_form.is_active) }}
+        {{ form_row(edit_form.alias) }}
+        {{ form_widget(edit_form.translations) }}
+        {{ form_errors(edit_form.translations) }}
+        {{ form_widget(edit_form._token) }} 
+        {{ form_widget(edit_form.action) }}
+    </form>
+
+    <form action="{{ path('admin_image_gallery_category_delete', { 'id': entity.id }) }}" method="post" id="delete_form_{{entity.id }}">
+        {{ form_widget(delete_form) }}
+    </form>
+    {% include "ImageGalleryBundle:ImageCategory:_modalDeleteImageCategory.html.twig" with {'id' : entity.id, 'title' : entity.title}%}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "ImageGalleryBundle:ImageCategory:_editFormActions.html.twig"%}
+{% endblock %}
+

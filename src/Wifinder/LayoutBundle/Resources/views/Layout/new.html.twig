@@ -1,0 +1,15 @@
+{% extends '::_adminContainer.html.twig' %}
+            
+{% block title %}{% trans from "admin"%}Layout creation{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin"%}Layout creation{% endtrans %}{% endblock %}
+
+{% block content %}
+    <form action="{{ path('admin_layout_create') }}" method="post" {{ form_enctype(form) }} class="main_form">
+         {{ form_widget(form) }} 
+    </form>
+{% endblock %}
+
+{% block sidebar %}
+    {% include "LayoutBundle:Layout:_newFormActions.html.twig" %}
+{% endblock %}

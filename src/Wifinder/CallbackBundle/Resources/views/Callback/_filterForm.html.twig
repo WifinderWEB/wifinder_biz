@@ -1,0 +1,19 @@
+<div id="filterCallbackModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 id="myModalLabel">{% trans from "admin" %}Filter{% endtrans %}</h3>
+    </div>
+    <div class="modal-body">
+        <form action="{{ path('admin_project_filter') }}" method="post" {{ form_enctype(filter_form) }}  class="filter_form">
+            {{ form_widget(filter_form)}}
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" id="button_filter_form">
+            <i class="icon-filter icon-white"></i> {% trans from "admin" %}Filter{% endtrans %}
+        </button>
+        <a class="btn" href="{{ path('admin_project_reset_filter') }}" id="button_reset_filter_form">
+            <i class="icon-refresh"></i> {% trans from "admin" %}Reset{% endtrans %}
+        </a>
+    </div>
+</div>

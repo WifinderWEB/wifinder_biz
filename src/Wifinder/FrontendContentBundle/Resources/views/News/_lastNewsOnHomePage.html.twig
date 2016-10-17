@@ -1,0 +1,10 @@
+{% if items|length > 0 %}
+<ul>
+    {% for item in items %}
+        <li>
+            <span class="data_publish">{{ item.publish|date("d.m.Y") }}</span><br/>
+            <a href="{{item.category.alias|localeLink("/news/")}}/{{item.alias}}"><span class="title_news">{{item.title}}</span></a>
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}

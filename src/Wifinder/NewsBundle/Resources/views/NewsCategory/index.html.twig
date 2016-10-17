@@ -1,0 +1,35 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans from "admin"%}News Category list{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin"%}News Category list{% endtrans %}{% endblock %}
+
+{% block content %}
+    <table class="records_list table table-condensed table-hover table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>{% trans from "admin"%}Title{% endtrans %}</th>
+                <th>{% trans from "admin"%}Alias{% endtrans %}</th>
+                <th>{% trans from "admin"%}Is active{% endtrans %}</th>
+                <th>{% trans from "admin"%}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                <td><span style="padding-left: {{(entity.level) * 30}}px">{{ entity.title }}</span></td>
+                <td>{{ entity.alias }}</td>
+                <td>{% include "NewsBundle:NewsCategory:_labelActive.html.twig" with {'entity':entity} %}</td>
+                <td>
+                    {% include "NewsBundle:NewsCategory:_listItemActions.html.twig" with {'entity' : entity, 'delete_form' : delete_form}%}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% include "NewsBundle:NewsCategory:_pagination.html.twig" %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "NewsBundle:NewsCategory:_listActions.html.twig" %}
+{% endblock %}

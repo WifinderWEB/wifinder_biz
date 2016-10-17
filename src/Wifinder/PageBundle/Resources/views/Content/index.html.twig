@@ -1,0 +1,40 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans from "admin" %}Content list{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin" %}Content list{% endtrans %}{% endblock %}
+
+{% block content %}
+<table class="records_list table table-condensed table-hover table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>{% trans from "admin" %}Title{% endtrans %}</th>
+            <th>{% trans from "admin" %}Alias{% endtrans %}</th>
+            <th>{% trans from "admin" %}Is active?{% endtrans %}</th>
+            <th>{% trans from "admin" %}Actions{% endtrans %}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in pagination  %}
+        <tr>
+            <td>{{ entity.title }}</td>
+            <td>{{ entity.alias }}</td>
+            <td>
+                {% include "PageBundle:Content:_labelActive.html.twig"%}
+            </td>
+            <td>
+                {% include "PageBundle:Content:_listItemActions.html.twig" %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{# display navigation #}
+<div class="pagination">
+    {{ knp_pagination_render(pagination) }}
+</div>
+{% endblock %}
+
+{% block sidebar %}
+    {% include "PageBundle:Content:_listActions.html.twig" %}
+{% endblock %}

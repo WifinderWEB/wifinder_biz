@@ -1,0 +1,39 @@
+﻿<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Web Item "%alias%" is successfully saved!</source>
+                <target>Элемент "%alias%" успешно сохранен!</target>
+            </trans-unit>
+			<trans-unit id="2">
+                <source>Web Item "%alias%" is successfully updated!</source>
+                <target>Элемент "%alias%" успешно обновлен!</target>
+            </trans-unit>
+			<trans-unit id="3">
+                <source>Correct validation errors and try saving again.</source>
+                <target>Устраните ошибки валидации и попробуйте сохранить еще раз.</target>
+            </trans-unit>
+			<trans-unit id="4">
+                <source>Unable to find Web Item with id = "%id%".</source>
+                <target>Элемент с id = "%id%" не существует.</target>
+            </trans-unit>
+			<trans-unit id="5">
+                <source>Web Item "%alias%" is successfully deleted!</source>
+                <target>Элемент "%alias%" успешно удален!</target>
+            </trans-unit>
+			<trans-unit id="6">
+                <source>Error deleting Web Item "%alias%".</source>
+                <target>Ошибка при удалении элемента "%alias%".</target>
+            </trans-unit>
+			<trans-unit id="7">
+                <source>Alias can contain only letters, numbers and symbols \"_\" , \"-\".</source>
+                <target>Псевдоним может содержать только буквы латинского алфавита, цифры и символы \"_\" , \"-\".</target>
+            </trans-unit>
+			<trans-unit id="8">
+                <source>Description</source>
+                <target>Описание</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Menu list</source>
+                <target>Список меню</target>
+            </trans-unit>
+			<trans-unit id="2">
+                <source>Is Active?</source>
+                <target>Показать?</target>
+            </trans-unit>
+			<trans-unit id="3">
+                <source>show items</source>
+                <target>показать список</target>
+            </trans-unit>
+			<trans-unit id="4">
+                <source>Actions</source>
+                <target>Действия</target>
+            </trans-unit>
+			<trans-unit id="5">
+                <source>edit</source>
+                <target>редактировать</target>
+            </trans-unit>
+			<trans-unit id="6">
+                <source>Edit</source>
+                <target>Редактировать</target>
+            </trans-unit>
+			<trans-unit id="7">
+                <source>delete</source>
+                <target>удалить</target>
+            </trans-unit>
+			<trans-unit id="8">
+                <source>Delete</source>
+                <target>Удалить</target>
+            </trans-unit>
+			<trans-unit id="9">
+                <source>Are you sure?</source>
+                <target>Вы уверены?</target>
+            </trans-unit>
+			<trans-unit id="10">
+                <source>Cansel</source>
+                <target>Отменить</target>
+            </trans-unit>
+			<trans-unit id="11">
+                <source>Yes delete</source>
+                <target>Да удалить</target>
+            </trans-unit>
+			<trans-unit id="12">
+                <source>The Category "%title%" will be removed from the catalog. Also will remove all related subcategories, products, files and images.</source>
+                <target>Категория "%title%" будет удалена из каталога. Также будут удалены все связанные с ней подкатегории, продукты, изображения и файлы.</target>
+            </trans-unit>
+			<trans-unit id="13">
+                <source>Create a new entry</source>
+                <target>Создать новую запись</target>
+            </trans-unit>
+			<trans-unit id="14">
+                <source>Create</source>
+                <target>Создать</target>
+            </trans-unit>
+			<trans-unit id="15">
+                <source>Back to the list</source>
+                <target>Вернуться к списку</target>
+            </trans-unit>
+			<trans-unit id="16">
+                <source>Menu edit - "%name%"</source>
+                <target>Редактировать меню - "%name%"</target>
+            </trans-unit>
+			<trans-unit id="17">
+                <source>Is active?</source>
+                <target>Показать?</target>
+            </trans-unit>
+			<trans-unit id="18">
+                <source>up</source>
+                <target>вверх</target>
+            </trans-unit>
+			<trans-unit id="19">
+                <source>down</source>
+                <target>вниз</target>
+            </trans-unit>
+			<trans-unit id="20">
+                <source>add item</source>
+                <target>добавить ссылку</target>
+            </trans-unit>
+			<trans-unit id="21">
+                <source>Menu Item list</source>
+                <target>Список пунктов меню</target>
+            </trans-unit>
+			<trans-unit id="22">
+                <source>Base content</source>
+                <target>Основной контент</target>
+            </trans-unit>
+			<trans-unit id="23">
+                <source>Back to list menu</source>
+                <target>Вернуться к списку меню</target>
+            </trans-unit>
+			<trans-unit id="24">
+                <source>Menu Item edit - "%title%"</source>
+                <target>Редактировать пункт меню - "%title%"</target>
+            </trans-unit>
+			<trans-unit id="25">
+                <source>Link</source>
+                <target>Ссылка</target>
+            </trans-unit>
+			<trans-unit id="26">
+                <source>Is active</source>
+                <target>Показать?</target>
+            </trans-unit>
+			<trans-unit id="27">
+                <source>Locales</source>
+                <target>Локализация контента</target>
+            </trans-unit>
+			<trans-unit id="28">
+                <source>logged in as</source>
+                <target>вы вошли как</target>
+            </trans-unit>
+			<trans-unit id="29">
+                <source>Change status</source>
+                <target>Изменить статус</target>
+            </trans-unit>
+			<trans-unit id="31">
+                <source>Move the node up</source>
+                <target>Переместить вверх</target>
+            </trans-unit>
+			<trans-unit id="32">
+                <source>Move the node down</source>
+                <target>Переместить вниз</target>
+            </trans-unit>
+			<trans-unit id="33">
+                <source>Name</source>
+                <target>Заголовок</target>
+            </trans-unit>
+			<trans-unit id="34">
+                <source>Save</source>
+                <target>Сохранить</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>Menu Item creation</source>
+                <target>Создание новой записи в меню</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>Logout</source>
+                <target>Выйти</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>admin panel</source>
+                <target>панель управления</target>
+            </trans-unit>
+			<trans-unit id="38">
+                <source>Menu creation</source>
+                <target>Новое меню</target>
+            </trans-unit>
+			<trans-unit id="39">
+                <source>Save and close</source>
+                <target>Сохранить и закрыть</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

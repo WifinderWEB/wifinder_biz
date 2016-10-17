@@ -1,0 +1,91 @@
+﻿<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>"%alias%" is successfully saved!</source>
+                <target>"%alias%" успешно сохранен!</target>
+            </trans-unit>
+			<trans-unit id="2">
+                <source>"%alias%" is successfully updated!</source>
+                <target>"%alias%" успешно обновлен!</target>
+            </trans-unit>
+			<trans-unit id="3">
+                <source>Correct validation errors and try saving again.</source>
+                <target>Устраните ошибки валидации и попробуйте сохранить еще раз.</target>
+            </trans-unit>
+			<trans-unit id="4">
+                <source>Unable to find entry with id = "%id%".</source>
+                <target>Запись с id = "%id%" не существует.</target>
+            </trans-unit>
+			<trans-unit id="5">
+                <source>"%alias%" is successfully deleted!</source>
+                <target>"%alias%" успешно удален!</target>
+            </trans-unit>
+			<trans-unit id="6">
+                <source>Error deleting "%alias%".</source>
+                <target>Ошибка при удалении "%alias%".</target>
+            </trans-unit>
+			<trans-unit id="7">
+                <source>Alias can contain only letters, numbers and symbols \"_\" , \"-\".</source>
+                <target>Псевдоним может содержать только буквы латинского алфавита, цифры и символы \"_\" , \"-\".</target>
+            </trans-unit>
+			<trans-unit id="8">
+                <source>Is active?</source>
+                <target>Показать?</target>
+            </trans-unit>
+			<trans-unit id="9">
+                <source>Title</source>
+                <target>Заголовок</target>
+            </trans-unit>
+			<trans-unit id="10">
+                <source>Alias</source>
+                <target>Псевдоним</target>
+            </trans-unit>
+			<trans-unit id="11">
+                <source>Is active</source>
+                <target>Показать?</target>
+            </trans-unit>
+			<trans-unit id="12">
+                <source>Parent</source>
+                <target>Родитель</target>
+            </trans-unit>
+			<trans-unit id="13">
+                <source>Catalog type</source>
+                <target>Тип контента</target>
+            </trans-unit>
+			<trans-unit id="14">
+                <source>Short description</source>
+                <target>Краткое описание</target>
+            </trans-unit>
+			<trans-unit id="15">
+                <source>Description</source>
+                <target>Описание</target>
+            </trans-unit>
+			<trans-unit id="16">
+                <source>Image</source>
+                <target>Файл изображения</target>
+            </trans-unit>
+			<trans-unit id="17">
+                <source>File</source>
+                <target>Файл</target>
+            </trans-unit>
+			<trans-unit id="18">
+                <source>File category</source>
+                <target>Категория файла</target>
+            </trans-unit>
+			<trans-unit id="19">
+                <source>"%alias%" is successfully moved up!</source>
+                <target>"%alias%" успешно перемещен вверх!</target>
+            </trans-unit>
+			<trans-unit id="20">
+                <source>"%alias%" is successfully moved down!</source>
+                <target>"%alias%" успешно перемещен вниз!</target>
+            </trans-unit>
+			<trans-unit id="37">
+                <source>The alias is too long.</source>
+                <target>The alias is too long.|The alias is too %count% long.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

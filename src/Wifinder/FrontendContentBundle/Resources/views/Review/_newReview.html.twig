@@ -1,0 +1,30 @@
+<div id="reviewModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">{% trans from 'content'%}Form review{% endtrans %}</h3>
+    </div>
+    <div class="modal-body">
+        <form action="{{ path('frontend_review_form')}}" {{ form_enctype(form) }} id="review_form">
+            <div>
+                {{form_errors(form.user) }}
+                {{ form_widget(form.user) }}
+            </div>
+            <div>
+                {{form_errors(form.review) }}
+                {{ form_widget(form.review) }}
+            </div>
+            <div>
+                {{form_errors(form.captcha) }}
+                {{ form_widget(form.captcha) }}
+            </div>
+                {{ form_widget(form._token) }}
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">
+            <i class="icon-remove"></i> {% trans from "content" %}Cansel{% endtrans %}</button>
+        <button class="btn btn-wifinder" id="button_review_form" onclick="Frontend.submitCallback(this)">
+            <i class="icon-trash icon-white"></i> {% trans from "content" %}Submit{% endtrans %}
+        </button>
+    </div>
+</div>

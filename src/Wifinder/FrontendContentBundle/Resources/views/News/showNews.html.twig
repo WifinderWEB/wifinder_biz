@@ -1,0 +1,50 @@
+{% extends 'FrontendContentBundle::_frontendContainer.html.twig' %}
+
+{% block titlePage %}{{news.title}}{% endblock %}
+
+{% block title %}
+    {% if news.meta and news.meta.metaTitle|trim|length > 0 %}
+        <title>{{news.meta.metaTitle}}</title>
+    {% else %}
+        <title>{{news.title|raw}}</title>
+    {% endif%}
+{% endblock %}
+    
+{% block meta_description %}
+    {% if news.meta and news.meta.metaDescription|trim|length > 0 %}
+        <meta name="description" content="{{news.meta.metaDescription|trim}}"/>
+    {% endif %}
+{% endblock %}
+{% block meta_keywords %}
+    {% if news.meta and news.meta.metaKeywords|trim|length > 0%}
+        <meta name="keywords" content="{{news.meta.metaKeywords|trim}}"/>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="item_news">
+       <div class="data_publish">{{ news.publish|date("d.m.Y") }}</div>
+       {% for img in news.images %}
+            {% if loop.index == 1%}
+            <div class="main_img">
+                <img src="{{img.webPath | apply_filter('550x319_thumb')}}" alt="{{img.title}}"/>
+            </div>
+            {% endif %}
+        {% endfor %}
+       {{news.content|raw}}
+       {% include 'FrontendContentBundle:News:_images.html.twig' with {'images': news.images}%}
+   </div>
+{% endblock %}
+
+{% block sidebar %}
+   {% render(controller( "FrontendContentBundle:Menu:sidebarMenu", {"alias" : 'news'})) %}
+{% endblock %}
+
+{% block breadCrumb %}
+    <ul class="breadcrumb">
+        <li><a href="{{"/"|localeLink}}">{% trans from 'content'%}Home page{% endtrans %}</a> <span class="divider">/</span></li>
+        <li><a href="{{"/news"|localeLink}}">{% trans from 'content'%}News{% endtrans %}</a> <span class="divider">/</span></li>
+        <li><a href="{{news.category.alias|localeLink("/news/")}}">{{news.category.title}}</a> <span class="divider">/</span></li>
+        <li class="active">{{news.title}}</li>
+    </ul>
+{% endblock %} 

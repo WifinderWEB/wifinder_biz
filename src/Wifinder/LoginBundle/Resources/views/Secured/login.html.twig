@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{ asset('/css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('/css/admin.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span4 offset4" id="login_form">
+                    <table class="table table-condensed table-hover table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>{% trans from "admin"%}Input in the Control Panel{% endtrans %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {% if error %}
+                                        <div class="error alert alert-error">{{ error.message }}</div>
+                                    {% endif %}
+                                    <form action="{{ path("_security_check") }}" method="post" id="login">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                   <label for="username">{% trans from "admin"%}Username{% endtrans %}</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label for="password">{% trans from "admin"%}Password{% endtrans %}</label>
+                                                </td>
+                                                <td>
+                                                    <input type="password" id="password" name="_password" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="text-align: center">
+                                                    <input type="submit" class="symfony-button-grey" value="{% trans from "admin"%}LOGIN{% endtrans %}" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                 </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                 </div>
+            </div>
+        </div>
+    </body>

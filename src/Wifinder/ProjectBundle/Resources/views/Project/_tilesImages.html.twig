@@ -1,0 +1,5 @@
+<ul class="images thumbnails" data-prototype="{{ form_widget(edit_form.images.vars.prototype)|e }}">
+    {% for image in edit_form.images %}
+        {% include "NewsBundle:NewsItem:_image.html.twig" with {'image' : image }%}
+    {% endfor %}
+</ul>

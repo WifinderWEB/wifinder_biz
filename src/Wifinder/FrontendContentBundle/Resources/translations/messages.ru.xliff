@@ -1,0 +1,55 @@
+﻿<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Please enter your name</source>
+                <target>Пожалуйста представьтесь</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Please enter your review</source>
+                <target>Введите ваш отзыв</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Please enter your first name</source>
+                <target>Введите Ваше имя</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Please enter your middle name</source>
+                <target>Введите Ваше отчество</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Please enter your last name</source>
+                <target>Введите Вашу фамилию</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Please enter your e-mail</source>
+                <target>Введите Ваш E-mail</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Please enter phone</source>
+                <target>Введите Ваш телефон</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Please enter text</source>
+                <target>Введите текст заявки</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Required field</source>
+                <target>Поле обязательно для заполнения</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>The email is not a valid email</source>
+                <target>Неверный формат email</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Please enter your post</source>
+                <target>Введите вашу должность</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Please enter your company</source>
+                <target>Введите название вашей компании</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

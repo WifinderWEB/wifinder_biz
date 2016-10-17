@@ -1,0 +1,2 @@
+<h2>{% trans from 'content'%}NEWS{% endtrans %}</h2>
+{% render(controller( "FrontendContentBundle:News:LastNews", {"category" : category, "limit" : limit}))%}

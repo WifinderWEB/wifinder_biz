@@ -1,0 +1,49 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans from "admin" %}Email list{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin" %}Email list{% endtrans %}{% endblock %}
+
+{% block content %}
+    <table class="records_list table table-condensed table-hover table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>{% trans from "admin" %}Date{% endtrans %}</th>
+                <th>{% trans from "admin" %}Email{% endtrans %}</th>
+                <th>{% trans from "admin" %}User{% endtrans %}</th>
+                <th>{% trans from "admin" %}Type mailing{% endtrans %}</th>
+                <th>{% trans from "admin" %}Is active?{% endtrans %}</th>
+                <th>{% trans from "admin" %}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                <td>{{ entity.created|date('d.m.y H:i') }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.firstName }} {{ entity.middleName }} {{ entity.lastName }}</td>
+                <td>
+                    <ol>
+                    {% for one in entity.type%}
+                       <li>{{ one.type }}</li>
+                    {% endfor %}
+                    </ol>
+                </td>
+                <td>
+                    {% include "CallbackBundle:MailingAddress:_labelActive.html.twig" with {'entity':entity} %}
+                </td>
+                <td>
+                    {% include "CallbackBundle:MailingAddress:_listItemActions.html.twig" with {'entity' : entity, 'delete_form' : delete_form}%}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {# display navigation #}
+    {% include "CallbackBundle:MailingAddress:_pagination.html.twig" %}
+    {% include "CallbackBundle:MailingAddress:_filterForm.html.twig" %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "CallbackBundle:MailingAddress:_listActions.html.twig" %}
+{% endblock %}

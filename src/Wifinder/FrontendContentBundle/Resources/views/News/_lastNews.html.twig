@@ -1,0 +1,11 @@
+{% if items|length > 0 %}
+<ul class="last_news">
+    {% for item in items %}
+        <li>
+            <div class="data_publish">{{ item.publish|date("d.m.Y") }}</div>
+            <a href="{{item.category.alias|localeLink("/news/")}}/{{item.alias}}" class="title_news">{{item.title}}</a>
+        </li>
+    {% endfor %}
+</ul>
+ <div class="text_right"><a href="{{"/news"|localeLink}}">{% trans from 'content'%}View all news »{% endtrans %}</a></div>
+{% endif %}

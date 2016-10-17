@@ -1,0 +1,12 @@
+<div class="btn-group">
+    <a class="btn btn-small" href="{{ path('admin_review_edit', { 'id': entity.id }) }}">
+        <i class="icon-edit"></i> {% trans from 'admin'%}edit{% endtrans %}</a>
+    <form action="{{ path('admin_review_delete', { 'id': entity.id }) }}" method="post"  class="delete_form" id="delete_form_{{entity.id}}">
+         <input type="hidden" id="form_id" name="form[id]" value="{{entity.id}}">
+         <input type="hidden" id="form__token" name="form[_token]" value="{{delete_form._token.vars.value}}">
+    </form>
+    <a href="#deleteReviewModal_{{entity.id}}" role="button" class="btn btn-small btn-danger" data-toggle="modal">
+        <i class="icon-trash icon-white"></i> {% trans from 'admin'%}delete{% endtrans %}
+    </a>
+</div>
+{% include "CallbackBundle:Review:_modalDeleteReview.html.twig" with {'id' : entity.id}%}

@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="span2">
+    </div>
+    <div class="span7" id="main_content">    
+        <h2 class="border_b" id="site_map_header">{% trans from 'content'%}Site map{% endtrans %}</h2>
+        <ul id="site_map">
+            {% for item in items %}
+                    <li style="padding-left:{{item.level*30}}px"><a href="{{ item.link|localeLink}}">{{item.title}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="span3">
+    </div>
+{% endblock %}

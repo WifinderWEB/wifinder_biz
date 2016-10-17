@@ -1,0 +1,368 @@
+<?php
+
+//src/Apollo/MenuBundle/Entity/MenuItem.php
+
+namespace Apollo\MenuBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @Gedmo\Tree(type="nested")
+ * @ORM\Entity(repositoryClass="Apollo\MenuBundle\Entity\Repository\MenuItemRepository")
+ * @Gedmo\TranslationEntity(class="Apollo\MenuBundle\Entity\MenuItemTranslation")
+ */
+class MenuItem {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @Gedmo\TreeParent
+     * @ORM\ManyToOne(targetEntity="Menu", inversedBy="items")
+     * @ORM\JoinColumn(name="menu_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    protected $menu;
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $title;
+
+    /**
+     * @ORM\Column(type="string", length=100, unique=true)
+     */
+    protected $alias;
+
+    /**
+     * @ORM\Column(type="string", length=250)
+     */
+    protected $link;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $is_active = true;
+
+    /**
+     * @Gedmo\TreeLeft
+     * @ORM\Column(type="integer")
+     */
+    private $lft;
+
+    /**
+     * @Gedmo\TreeRight
+     * @ORM\Column(type="integer")
+     */
+    private $rgt;
+
+    /**
+     * @Gedmo\TreeParent
+     * @ORM\ManyToOne(targetEntity="MenuItem", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $parent;
+
+    /**
+     * @Gedmo\TreeRoot
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $root;
+
+    /**
+     * @Gedmo\TreeLevel
+     * @ORM\Column(name="lvl", type="integer")
+     */
+    private $level;
+
+    /**
+     * @ORM\OneToMany(targetEntity="MenuItem", mappedBy="parent")
+     */
+    private $children;
+
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="MenuItemTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return MenuItem
+     */
+    public function setTitle($title) {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle() {
+        return $this->title;
+    }
+
+    /**
+     * Set alias
+     *
+     * @param string $alias
+     * @return MenuItem
+     */
+    public function setAlias($alias) {
+        $this->alias = $alias;
+
+        return $this;
+    }
+
+    /**
+     * Get alias
+     *
+     * @return string 
+     */
+    public function getAlias() {
+        return $this->alias;
+    }
+
+    /**
+     * Set lft
+     *
+     * @param integer $lft
+     * @return MenuItem
+     */
+    public function setLft($lft) {
+        $this->lft = $lft;
+
+        return $this;
+    }
+
+    /**
+     * Get lft
+     *
+     * @return integer 
+     */
+    public function getLft() {
+        return $this->lft;
+    }
+
+    /**
+     * Set rgt
+     *
+     * @param integer $rgt
+     * @return MenuItem
+     */
+    public function setRgt($rgt) {
+        $this->rgt = $rgt;
+
+        return $this;
+    }
+
+    /**
+     * Get rgt
+     *
+     * @return integer 
+     */
+    public function getRgt() {
+        return $this->rgt;
+    }
+
+    /**
+     * Set root
+     *
+     * @param integer $root
+     * @return MenuItem
+     */
+    public function setRoot($root) {
+        $this->root = $root;
+
+        return $this;
+    }
+
+    /**
+     * Get root
+     *
+     * @return integer 
+     */
+    public function getRoot() {
+        return $this->root;
+    }
+
+    /**
+     * Set level
+     *
+     * @param integer $level
+     * @return MenuItem
+     */
+    public function setLevel($level) {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return integer 
+     */
+    public function getLevel() {
+        return $this->level;
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     * @return MenuItem
+     */
+    public function setLink($link) {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string 
+     */
+    public function getLink() {
+        return $this->link;
+    }
+
+    /**
+     * Set is_active
+     *
+     * @param boolean $isActive
+     * @return MenuItem
+     */
+    public function setIsActive($isActive) {
+        $this->is_active = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get is_active
+     *
+     * @return boolean 
+     */
+    public function getIsActive() {
+        return $this->is_active;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \Apollo\MenuBundle\Entity\MenuItem $parent
+     * @return MenuItem
+     */
+    public function setParent(\Apollo\MenuBundle\Entity\MenuItem $parent = null) {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \Apollo\MenuBundle\Entity\MenuItem 
+     */
+    public function getParent() {
+        return $this->parent;
+    }
+
+    /**
+     * Add children
+     *
+     * @param \Apollo\MenuBundle\Entity\MenuItem $children
+     * @return MenuItem
+     */
+    public function addChildren(\Apollo\MenuBundle\Entity\MenuItem $children) {
+        $this->children[] = $children;
+
+        return $this;
+    }
+
+    /**
+     * Remove children
+     *
+     * @param \Apollo\MenuBundle\Entity\MenuItem $children
+     */
+    public function removeChildren(\Apollo\MenuBundle\Entity\MenuItem $children) {
+        $this->children->removeElement($children);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChildren() {
+        return $this->children;
+    }
+
+    /**
+     * Add translations
+     *
+     * @param \Apollo\MenuBundle\Entity\MenuItemTranslation $translations
+     * @return MenuItem
+     */
+    public function addTranslation(MenuItemTranslation $t) {
+        if (!$this->translations->contains($t)) {
+            $this->translations[] = $t;
+            $t->setObject($this);
+        }
+    }
+
+    /**
+     * Remove translations
+     *
+     * @param \Apollo\MenuBundle\Entity\MenuItemTranslation $translations
+     */
+    public function removeTranslation(\Apollo\MenuBundle\Entity\MenuItemTranslation $translations) {
+        $this->translations->removeElement($translations);
+    }
+
+    /**
+     * Get translations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTranslations() {
+        return $this->translations;
+    }
+
+    public function __toString() {
+        return $this->getTitle();
+    }
+
+}

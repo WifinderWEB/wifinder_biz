@@ -1,0 +1,15 @@
+<ul class="nav nav-pills nav-stacked" id="sidebar-nav">
+    {% for item in items %}
+        <li {% if item.alias == active%}class="active"{% endif %}>
+            <a href="{{item.alias|localeLink("/projects/year/")}}"> 
+                {{ item.alias}}
+            </a>
+        </li>
+    {% endfor %}
+    <li {% if active is null %}class="active"{% endif %}>
+        {% set link = "/projects/year/reset"%}
+        <a href="{{link|localeLink}}"> 
+            {% trans from 'content'%}All Years{% endtrans %}
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,216 @@
+<?php
+
+//src/Apollo/PageBundle/Entity/Content.php
+
+namespace Apollo\PageBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Table(name="content")
+ * @Gedmo\TranslationEntity(class="Apollo\PageBundle\Entity\ContentTranslation")
+ * @ORM\Entity(repositoryClass="Apollo\PageBundle\Entity\Repository\ContentRepository")
+ */
+class Content {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $title;
+
+    /**
+     * @ORM\Column(type="string", length=100, unique=true)
+     */
+    protected $alias;
+
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $content;
+    
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="ContentTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $is_active = true;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="ContentMeta", 
+     *   mappedBy="content", 
+     *   cascade={"persist", "remove"})
+    */
+    protected $meta;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Apollo\WebItemBundle\Entity\WebItem", inversedBy="join_catalogs")
+     */
+    protected $web_items;
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Content
+     */
+    public function setTitle($title) {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle() {
+        return $this->title;
+    }
+
+    /**
+     * Set alias
+     *
+     * @param string $alias
+     * @return Content
+     */
+    public function setAlias($alias) {
+        $this->alias = $alias;
+
+        return $this;
+    }
+
+    /**
+     * Get alias
+     *
+     * @return string 
+     */
+    public function getAlias() {
+        return $this->alias;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     * @return Content
+     */
+    public function setContent($content) {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string 
+     */
+    public function getContent() {
+        return $this->content;
+    }
+    
+    /**
+     * Set is_active
+     *
+     * @param boolean $isActive
+     * @return Content
+     */
+    public function setIsActive($isActive)
+    {
+        $this->is_active = $isActive;
+    
+        return $this;
+    }
+
+    /**
+     * Get is_active
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->is_active;
+    }
+
+    public function __toString() {
+        return $this->getTitle();
+    }
+
+
+    /**
+     * Remove translations
+     *
+     * @param \Apollo\PageBundle\Entity\ContentTranslation $translations
+     */
+    public function removeTranslation(\Apollo\PageBundle\Entity\ContentTranslation $translations)
+    {
+        $this->translations->removeElement($translations);
+    }
+    
+    public function __construct() {
+        $this->translations = new ArrayCollection();
+    }
+
+    public function getTranslations() {
+        return $this->translations;
+    }
+
+    public function addTranslation(ContentTranslation $t) {
+        if (!$this->translations->contains($t)) {
+            $this->translations[] = $t;
+            $t->setObject($this);
+        }
+    }
+    
+    /**
+     * Set meta
+     *
+     * @param \Apollo\PageBundle\Entity\ContentMeta $meta
+     * @return Catalog
+     */
+    public function setMeta(\Apollo\PageBundle\Entity\ContentMeta $meta = null)
+    {
+        $this->meta = $meta;
+        $meta->setContent($this);
+        
+        return $this;
+    }
+
+    /**
+     * Get meta
+     *
+     * @return \Apollo\PageBundle\Entity\ContentMeta 
+     */
+    public function getMeta()
+    {
+        return $this->meta;
+    }
+}

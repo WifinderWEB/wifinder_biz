@@ -1,0 +1,64 @@
+elfinder:
+     resource: "@FMElfinderBundle/Resources/config/routing.yml"
+     
+genemu_base64:
+    resource: "@GenemuFormBundle/Resources/config/routing/base64.xml"
+    
+wifinder_layout:
+    resource: "@LayoutBundle/Resources/config/routing.yml"
+    prefix:   /admin
+    
+wifinder_callback:
+    resource: "@CallbackBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+wifinder_project:
+    resource: "@ProjectBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+wifinder_news:
+    resource: "@NewsBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+_imagine:
+    resource: .
+    type:     imagine
+    
+wifinder_image_gallery:
+    resource: "@ImageGalleryBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+wifinder_file_category:
+    resource: "@FileCategoryBundle/Controller/"
+    type:     annotation
+    prefix:   /admin 
+  
+wifinder_catalog:
+    resource: "@CatalogBundle/Resources/config/routing.yml"
+    prefix:   /admin
+ 
+wifinder_menu:
+    resource: "@MenuBundle/Resources/config/routing.yml"
+    prefix:   /admin
+    
+wifinder_web_item:
+    resource: "@WebItemBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+wifinder_content:
+    resource: "@PageBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+wifinder_login:
+    resource: "@LoginBundle/Controller/"
+    type:     annotation
+    prefix:   /
+    
+wifinder_frontend:
+    resource: "@FrontendContentBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+# Internal routing configuration to handle ESI
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal

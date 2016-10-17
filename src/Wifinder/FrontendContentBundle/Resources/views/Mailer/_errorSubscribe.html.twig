@@ -1,0 +1,11 @@
+<form action="{{path('frontend_mailer_subscribe')}}" {{ form_enctype(form) }} id="subscribe_form">
+    <div>
+        {{form_errors(form.email) }}
+        {{ form_widget(form.email) }}
+    </div>
+    <div>
+        {{form_errors(form.captcha) }}
+        {{ form_widget(form.captcha) }}
+    </div>
+        {{ form_widget(form._token) }}
+</form>

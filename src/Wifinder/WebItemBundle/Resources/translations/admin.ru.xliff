@@ -1,0 +1,95 @@
+﻿<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Web Item list</source>
+                <target>Элементы</target>
+            </trans-unit>
+			<trans-unit id="2">
+                <source>Alias</source>
+                <target>Псевдоним</target>
+            </trans-unit>
+			<trans-unit id="3">
+                <source>Content</source>
+                <target>Контент</target>
+            </trans-unit>
+			<trans-unit id="4">
+                <source>Actions</source>
+                <target>Действия</target>
+            </trans-unit>
+			<trans-unit id="5">
+                <source>edit</source>
+                <target>редактировать</target>
+            </trans-unit>
+			<trans-unit id="6">
+                <source>Edit</source>
+                <target>Редактировать</target>
+            </trans-unit>
+			<trans-unit id="7">
+                <source>delete</source>
+                <target>удалить</target>
+            </trans-unit>
+			<trans-unit id="8">
+                <source>Delete</source>
+                <target>Удалить</target>
+            </trans-unit>
+			<trans-unit id="9">
+                <source>Are you sure?</source>
+                <target>Вы уверены?</target>
+            </trans-unit>
+			<trans-unit id="10">
+                <source>Cansel</source>
+                <target>Отменить</target>
+            </trans-unit>
+			<trans-unit id="11">
+                <source>Yes delete</source>
+                <target>Да удалить</target>
+            </trans-unit>
+			<trans-unit id="12">
+                <source>The web item "%alias%" will be removed from the list.</source>
+                <target>Элемент "%alias%" будет удален.</target>
+            </trans-unit>
+			<trans-unit id="13">
+                <source>Create a new web item</source>
+                <target>Создать новый элемент</target>
+            </trans-unit>
+			<trans-unit id="14">
+                <source>Create</source>
+                <target>Создать</target>
+            </trans-unit>
+			<trans-unit id="15">
+                <source>Back to the list</source>
+                <target>Вернуться к списку</target>
+            </trans-unit>
+			<trans-unit id="16">
+                <source>Web Item "%alias%" edit</source>
+                <target>Редактировать элемент "%alias%"</target>
+            </trans-unit>
+			<trans-unit id="17">
+                <source>Description</source>
+                <target>Описание</target>
+            </trans-unit>
+			<trans-unit id="18">
+                <source>Join content</source>
+                <target>Отображать на страницах</target>
+            </trans-unit>
+			<trans-unit id="19">
+                <source>Content page</source>
+                <target>Страницы контента</target>
+            </trans-unit>
+			<trans-unit id="20">
+                <source>Catalog page</source>
+                <target>Страницы каталога</target>
+            </trans-unit>
+			<trans-unit id="21">
+                <source>Save and close</source>
+                <target>Сохранить и закрыть</target>
+            </trans-unit>
+			<trans-unit id="22">
+                <source>Save</source>
+                <target>Сохранить</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

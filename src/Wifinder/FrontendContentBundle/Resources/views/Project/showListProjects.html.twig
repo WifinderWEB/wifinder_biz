@@ -1,0 +1,62 @@
+{% extends 'FrontendContentBundle::_frontendContainerWithoutTitle.html.twig' %}
+
+{% block titlePage %}{% trans from 'content'%}Projects{% endtrans %}{% endblock %}
+
+{% block title %}
+    <title>{% trans from 'content'%}Projects{% endtrans %}</title>
+{% endblock %}
+{% block meta_description %}
+    <meta name="description" content="{% trans from 'content'%}Projects{% endtrans %}"/>
+{% endblock %}
+{% block meta_keywords %}
+    <meta name="keywords" content="{% trans from 'content'%}Projects{% endtrans %}"/>
+{% endblock %}
+ 
+{% block breadCrumb %}
+<ul class="breadcrumb">
+    <li><a href="{{"/"|localeLink}}">{% trans from 'content'%}Home page{% endtrans %}</a> <span class="divider">/</span></li>
+    <li class="active">{% trans from 'content'%}Projects{% endtrans %}</li>
+</ul>
+{% endblock %}  
+
+{% block sidebar %}
+    {% render(controller( "FrontendContentBundle:Menu:sidebarYearsMenu")) %}
+{% endblock %}
+
+{% block content %}
+    {% if year is null and page == 1%}
+        {% render(controller( "FrontendContentBundle:WebItem:renderItem", {"alias" : "projects"})) %}
+    {% endif %}
+    <div id="news">
+        {% if pagination|length > 0 %}
+            {#<div class="couunt_results">{% trans from 'content' %}In all:{% endtrans %} <span>{{param.totalCount}}</span></div>#}
+            <ul class="last_news">
+            {% set blockYear = '' %}
+            {% for item in pagination %}
+                    {% if blockYear != item.year%}
+                        <li class="title_list_block"><h3>{{item.year}}</h3></li>
+                        {% set blockYear = item.year%}
+                    {% endif %}
+                    <li>
+                        <div class="anons">
+                            {% for img in item.project.images %}
+                                {% if loop.index == 1%}
+                                    <img src="{{img.webPath | apply_filter('150x150_thumb')}}" alt="{{img.title}}"/>
+                                {% endif %}
+                            {% endfor %}
+                            <h3 class="title_news">{{item.project.title}}</h3>
+                            {{ item.project.shortDescription|raw }}
+                            <div class="clear"></div>
+                        </div>
+                        <div class="text_right"><a href="{{item.project.alias|localeLink('/projects/')}}">{% trans from 'content'%}more...{% endtrans %}</a></div>
+                    </li>
+            {% endfor %}
+            </ul>
+
+            <div class="pagination">
+            {{ knp_pagination_render(pagination) }}
+            </div>
+        {% endif %}
+        <div class="clear"></div>
+    </div>
+{% endblock %}

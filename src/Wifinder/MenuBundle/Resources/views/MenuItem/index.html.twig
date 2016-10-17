@@ -1,0 +1,34 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans from 'admin'%}Menu Item list{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from 'admin'%}Menu Item list{% endtrans %}{% endblock %}
+
+{% block content %}
+<table class="records_list table table-condensed table-hover table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>{% trans from 'admin'%}Title{% endtrans %}</th>
+            <th>{% trans from 'admin'%}Alias{% endtrans %}</th>
+            <th>{% trans from 'admin'%}Is Active?{% endtrans %}</th>
+            <th>{% trans from 'admin'%}Actions{% endtrans %}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><span style="padding-left: {{(entity.level-1) * 30}}px">{{ entity.title }}</td>
+            <td>{{ entity.alias }}</td>
+            <td>{% include "MenuBundle:MenuItem:_labelActive.html.twig" with {'entity':entity} %}</td>
+            <td>
+                {% include "MenuBundle:MenuItem:_listItemActions.html.twig" with {'entity' : entity, 'delete_form' : delete_form}%}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block sidebar %}
+     {% include "MenuBundle:MenuItem:_listActions.html.twig" %}
+{% endblock %}

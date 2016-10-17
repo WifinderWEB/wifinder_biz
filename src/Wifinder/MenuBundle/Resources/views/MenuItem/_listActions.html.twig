@@ -1,0 +1,12 @@
+<ul class="record_actions nav nav-tabs nav-stacked">
+    <li>
+        <a href="{{ path('admin_menu') }}">
+            <i class="icon-list"></i> {% trans from 'admin'%}Back to list menu{% endtrans %}
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_menu_item_new', { 'menu_id': menu_id }) }}">
+            <i class="icon-plus"></i> {% trans from 'admin'%}Create a new entry{% endtrans %}
+        </a>
+    </li>
+</ul>

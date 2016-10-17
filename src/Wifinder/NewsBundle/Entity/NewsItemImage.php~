@@ -1,0 +1,127 @@
+<?php
+
+//src/Apollo/NewsBundle/Entity/NewsItemImage.php
+
+namespace Apollo\NewsBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Table(name="news_item_image")
+ * @ORM\Entity(repositoryClass="Apollo\NewsBundle\Entity\Repository\NewsItemImageRepository")
+ * @Gedmo\TranslationEntity(class="Apollo\NewsBundle\Entity\NewsItemImageTranslation")
+ * @ORM\HasLifecycleCallbacks
+ */
+class NewsItemImage {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * 
+     * @Assert\File(maxSize="6000000")
+     */
+    protected $image;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $path;
+
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $title;
+
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $description;
+
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="NewsItemImageTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
+
+    /**
+     * @ORM\ManyToOne(
+     *   targetEntity="NewsItem", 
+     *   inversedBy="images")
+     * @ORM\JoinColumn(
+     *   name="news_id", 
+     *   referencedColumnName="id", 
+     *   onDelete="CASCADE")
+     */
+    protected $news;
+    
+    public function getAbsolutePath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir().'/'.$this->path;
+    }
+    
+    public function getWebPath() {
+        $path = $this->path;
+        if($path === null || !file_exists($this->getUploadRootDir() . '/' . $this->path))
+            $path = '/images/image_undefined.png';
+        else
+            $path = '/' . $this->getUploadDir() . '/' . $this->path;
+        return $path;
+    }
+
+    protected function getUploadRootDir() {
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+    }
+
+    protected function getUploadDir() {
+        return 'uploads/images';
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload() {
+        if (null !== $this->image) {
+            $filename = sha1(uniqid(mt_rand(), true));
+            $this->path = $filename . '.' . $this->image->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload() {
+        if (null === $this->image) {
+            return;
+        }
+
+        $this->image->move($this->getUploadRootDir(), $this->path);
+        unset($this->image);
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload() {
+        if ($image = $this->getAbsolutePath()) {
+            if(file_exists($image))
+                unlink($image);
+        }
+    }
+}

@@ -1,0 +1,36 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans from "admin"%}Review list{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin"%}Review list{% endtrans %}{% endblock %}
+
+{% block content %}
+    <table class="records_list table table-condensed table-hover table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>{% trans from "admin"%}User{% endtrans %}</th>
+                <th>{% trans from "admin"%}Review{% endtrans %}</th>
+                <th>{% trans from "admin"%}Is active?{% endtrans %}</th>
+                <th>{% trans from "admin"%}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                <td>{{ entity.user }}</td>
+                <td>{{ entity.review }}</td>
+                <td>{% include "CallbackBundle:Review:_labelActive.html.twig" with {'entity':entity} %}</td>
+                <td style="width: 307px">
+                    {% include "CallbackBundle:Review:_listItemActions.html.twig" with {'entity' : entity, 'delete_form' : delete_form}%}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% include "CallbackBundle:Review:_pagination.html.twig" %}
+    {% include "CallbackBundle:Review:_filterForm.html.twig" %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "CallbackBundle:Review:_listActions.html.twig" %}
+{% endblock %}

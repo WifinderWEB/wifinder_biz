@@ -1,0 +1,59 @@
+{% extends 'FrontendContentBundle::_frontendContainerWithoutSidebar.html.twig' %}
+
+{% block titlePage %}{{category.title}}{% endblock %}
+
+{% block title %}
+    <title>{{category.title}}</title>
+{% endblock %}
+{% block meta_description %}
+    <meta name="description" content="{{category.title}}"/>
+{% endblock %}
+{% block meta_keywords %}
+    <meta name="keywords" content="{{category.title}}"/>
+{% endblock %}
+
+
+{% block breadCrumb %}
+    <ul class="breadcrumb">
+        <li><a href="{{"/"|localeLink}}">{% trans from 'content'%}Home page{% endtrans %}</a> <span class="divider">/</span></li>
+        <li><a href="{{"/company"|localeLink}}">{% trans from 'content'%}Company{% endtrans %}</a> <span class="divider">/</span></li>
+        <li><a href="{{"/news"|localeLink}}">{% trans from 'content'%}News{% endtrans %}</a> <span class="divider">/</span></li>
+        <li class="active">{{category.title}}</li>
+    </ul>
+{% endblock %} 
+
+{% block sidebar %}
+   {% render(controller( "FrontendContentBundle:Menu:sidebarMenu", {"alias" : 'news'})) %}
+{% endblock %}
+
+{% block content %}
+    <div id="news">
+        {% if pagination|length > 0 %}
+            <div class="couunt_results">{% trans from 'content' %}In all:{% endtrans %} <span>{{param.totalCount}}</span></div>
+        <ul class="last_news">
+            {% for item in pagination %}
+                <li>
+                    <div class="data_publish">{{ item.publish|date("d.m.Y") }}</div>
+                    <h3 class="title_news">{{item.title}}</h3>
+                    <div class="anons">
+                        {% for img in item.images %}
+                            {% if loop.index == 1%}
+                            <img src="{{img.webPath | apply_filter('120x120_thumb')}}" alt="{{img.title}}"/>
+                            {% endif %}
+                        {% endfor %}
+                        {{ item.anons|raw }}
+                         <div class="clear"></div>
+                    </div>
+                    <div class="text_right"><a href="{{item.category.alias|localeLink("/news/")}}/{{item.alias}}">{% trans from 'content'%}more...{% endtrans %}</a></div>
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <div class="pagination">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+        {% endif %}
+        <div class="clear"></div>
+    </div>
+{% endblock %}
+

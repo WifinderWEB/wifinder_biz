@@ -1,0 +1,111 @@
+<?php
+
+//src/Apollo/NewsBundle/Entity/NewsCategory.php
+
+namespace Apollo\NewsBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * @ORM\Table(name="news_category")
+ * @Gedmo\Tree(type="nested")
+ * @ORM\Entity(repositoryClass="Apollo\NewsBundle\Entity\Repository\NewsCategoryRepository")
+ * @Gedmo\TranslationEntity(class="Apollo\NewsBundle\Entity\NewsCategoryTranslation")
+ * @UniqueEntity(fields="alias", message="Sorry, this alias is already in use.", groups={"NewsCategory"})
+ */
+class NewsCategory {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     * @Gedmo\TreeLeft
+     * @ORM\Column(type="integer")
+     */
+    protected $lft;
+
+    /**
+     * @Gedmo\TreeRight
+     * @ORM\Column(type="integer")
+     */
+    protected $rgt;
+
+    /**
+     * @Gedmo\TreeParent
+     * @ORM\ManyToOne(targetEntity="NewsCategory", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    protected $parent;
+
+    /**
+     * @Gedmo\TreeRoot
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $root;
+
+    /**
+     * @Gedmo\TreeLevel
+     * @ORM\Column(name="lvl", type="integer")
+     */
+    protected $level;
+
+    /**
+     * @ORM\OneToMany(targetEntity="NewsCategory", mappedBy="parent")
+     */
+    protected $children;
+    
+    /**
+     * @ORM\Column( type="string", length=100, unique=true)
+     * @Assert\NotBlank(message="Please enter alias.", groups={"NewsCategory"})
+     * @Assert\Regex( 
+     *       pattern="/^[a-z,A-Z,\_,\-,0-9]+$/",
+     *       message="Alias can contain only letters, numbers and symbols '_' , '-'.", 
+     *       groups={"NewsCategory"}
+     * )
+     */
+    protected $alias;
+    
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $title;
+
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $description;
+    
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $is_active = true;
+    
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="NewsCategoryTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
+    
+    /**
+    * @ORM\OneToMany(
+     *   targetEntity="NewsItem", 
+     *   mappedBy="category", 
+     *   cascade={"persist", "remove"})
+    */
+    protected $items;
+    
+    protected $action;
+}

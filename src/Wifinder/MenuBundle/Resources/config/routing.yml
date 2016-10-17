@@ -1,0 +1,97 @@
+admin_menu:
+  pattern:  /menu
+  defaults: { _controller: MenuBundle:Menu:index}
+
+admin_menu_new:
+  pattern:  /menu/new
+  defaults: { _controller: MenuBundle:Menu:new}
+
+admin_menu_create:
+  pattern:  /menu/create
+  defaults: { _controller: MenuBundle:Menu:create}
+  requirements:
+    _method: POST
+    
+admin_menu_edit:
+  pattern:  /menu/{id}/edit
+  defaults: { _controller: MenuBundle:Menu:edit}
+  requirements:
+    id:  \d+
+
+admin_menu_update:
+  pattern:  /menu/{id}/update
+  defaults: { _controller: MenuBundle:Menu:update}
+  requirements:
+    id:  \d+
+    _method: POST
+
+admin_menu_delete:
+  pattern:  /menu/{id}/delete
+  defaults: { _controller: MenuBundle:Menu:delete}
+  requirements:
+    id:  \d+
+    _method: POST
+
+admin_menu_item:
+  pattern:  /menu/{menu_id}
+  defaults: { _controller: MenuBundle:MenuItem:index}
+  requirements:
+    menu_id:  \d+
+
+admin_menu_item_new:
+  pattern:  /menu/{menu_id}/item/new
+  defaults: { _controller: MenuBundle:MenuItem:new}
+  requirements:
+    menu_id:  \d+
+
+admin_menu_item_create:
+  pattern:  /menu/{menu_id}/item/create
+  defaults: { _controller: MenuBundle:MenuItem:create}
+  requirements:
+    menu_id:  \d+
+    _method: POST
+
+admin_menu_item_edit:
+  pattern:  /menu/{menu_id}/item/{id}/edit
+  defaults: { _controller: MenuBundle:MenuItem:edit}
+  requirements:
+    menu_id:  \d+
+    id:  \d+
+
+admin_menu_item_update:
+  pattern:  /menu/{menu_id}/item/{id}/update
+  defaults: { _controller: MenuBundle:MenuItem:update}
+  requirements:
+    menu_id:  \d+
+    id:  \d+
+    _method: POST
+
+admin_menu_item_delete:
+  pattern:  /menu/{menu_id}/item/{id}/delete
+  defaults: { _controller: MenuBundle:MenuItem:delete}
+  requirements:
+    menu_id:  \d+
+    id:  \d+
+    _method: POST
+    
+admin_menu_change_active:
+  pattern:  /menu/changeActive
+  defaults: { _controller: MenuBundle:Menu:changeActive, active: 0 }
+  
+admin_menu_item_change_active:
+  pattern:  /menu/item/changeActive
+  defaults: { _controller: MenuBundle:MenuItem:changeActive, active: 0 }
+  
+admin_menu_item_move_up:
+  pattern:  /menu/{menu_id}/item/{id}/move/up
+  defaults: { _controller: MenuBundle:MenuItem:moveUp}
+  requirements:
+    id:  \d+
+    menu_id: \d+
+    
+admin_menu_item_move_down:
+  pattern:  /menu/{menu_id}/item/{id}/move/down
+  defaults: { _controller: MenuBundle:MenuItem:moveDown}
+  requirements:
+    id:  \d+
+    menu_id: \d+

@@ -1,0 +1,37 @@
+admin_content:
+  pattern:  /content
+  defaults: { _controller: PageBundle:Content:index}
+
+admin_content_new:
+  pattern:  /content/new
+  defaults: { _controller: PageBundle:Content:new}
+
+admin_content_create:
+  pattern:  /content/create
+  defaults: { _controller: PageBundle:Content:create}
+  requirements:
+    _method:  POST
+    
+admin_content_edit:
+  pattern:  /content/{id}/edit
+  defaults: { _controller: PageBundle:Content:edit}
+  requirements:
+    id: \d+
+
+admin_content_update:
+  pattern:  /content/{id}/update
+  defaults: { _controller: PageBundle:Content:update}
+  requirements:
+    _method:  POST
+    id: \d+
+    
+admin_content_delete:
+  pattern:  /content/{id}/delete
+  defaults: { _controller: PageBundle:Content:delete}
+  requirements:
+    _method:  POST
+    id: \d+
+    
+admin_content_change_active:
+  pattern:  /content/changeActive
+  defaults: { _controller: PageBundle:Content:changeActive, active: 0 }

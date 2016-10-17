@@ -1,0 +1,62 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{ asset('/js/jquery-ui-1.9.2.custom.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/jquery.localisation-min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/ui.multiselect.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function(){
+            $(".multiselect").width($('.tab-content').width()-30);
+            $.localise('ui-multiselect', {language: 'ru', path: '{{ asset('/js/')}}'});
+            $(".multiselect").multiselect({
+                sortable : false
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{parent()}}
+    <link href="{{ asset('/css/jquery-ui-1.9.2.custom.min.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('/css/ui.multiselect.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+    
+{% block title %}{% trans from "admin" %}Create a new web item{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin" %}Create a new web item{% endtrans %}{% endblock %}
+
+{% block content %}
+<form action="{{ path('admin_web_item_create') }}" method="post" {{ form_enctype(form) }} class="main_form">
+    <div class="tabbable">
+        <ul class="nav nav-tabs" id="content-tabs">
+            <li><a href="#field-row-base_content"><i class="icon-align-left"></i> {% trans from "admin" %}Base content{% endtrans %}</a></li>
+            <li><a href="#field-row-join_content"><i class="icon-magnet"></i> {% trans from "admin" %}Join content{% endtrans %}</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane" id="field-row-base_content">
+                {{ form_row(form.is_active) }}
+                {{ form_row(form.alias) }}
+                {{ form_row(form.description) }}
+                {{ form_widget(form.translations) }}
+            </div>
+            <div class="tab-pane" id="field-row-join_content">
+                <h4>{% trans from "admin" %}Content page{% endtrans %}</h4>
+                {{ form_widget(form.join_contents) }}
+
+                <h4>{% trans from "admin" %}Catalog page{% endtrans %}</h4>
+                {{ form_widget(form.join_catalogs) }}
+                
+                <h4>{% trans from "admin" %}Project page{% endtrans %}</h4>
+                {{ form_widget(form.join_projects) }}
+            </div>
+        </div>
+    </div>
+    {{ form_widget(form._token) }}
+    {{ form_widget(form.action) }}
+</form>
+{% endblock %}
+
+{% block sidebar %}
+    {% include "WebItemBundle:WebItem:_newFormActions.html.twig" %}
+{% endblock %}

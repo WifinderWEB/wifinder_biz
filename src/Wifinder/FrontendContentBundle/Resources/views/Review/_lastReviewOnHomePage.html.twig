@@ -1,0 +1,11 @@
+{% if items | length > 0%}
+<ul>
+    {% for item in items %}
+        <li>
+            <span class="data_publish">{{ item.created|date("d.m.Y") }}</span><br/>
+            {{item.review|raw}}
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}
+

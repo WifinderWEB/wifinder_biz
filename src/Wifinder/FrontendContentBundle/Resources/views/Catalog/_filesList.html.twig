@@ -1,0 +1,63 @@
+{% if other or tone or lit or cert%}
+<h2 class="file_header_list">{% trans from 'content'%}Files for download{% endtrans %}</h2>
+{% endif %}
+
+{% if other %}
+<div class="files_block">
+    <table class="documents">
+        <tbody>
+            {% for file in other %}
+                <tr>
+                    <td><a href="{{file.webPath}}">{{file.title}}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+
+{% if tone %}
+<h3>{% trans from 'content'%}Catalogs{% endtrans %}</h3>
+<div class="files_block">
+    <table class="documents">
+        <tbody>
+            {% for file in tone %}
+                <tr>
+                    <td><a href="{{file.webPath}}">{{file.title}}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+{% if lit %}
+<h3>{% trans from 'content'%}Literature{% endtrans %}</h3>
+<div class="files_block">
+    <table class="documents">
+        <tbody>
+            {% for file in lit %}
+                <tr>
+                    <td><a href="{{file.webPath}}">{{file.title}}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+{% if cert %}
+<h3>{% trans from 'content'%}Approvals/Certifications{% endtrans %}</h3>
+<div class="files_block">
+    <table class="documents">
+        <tbody>
+            {% for file in cert %}
+                <tr>
+                    <td><a href="{{file.webPath}}">{{file.title}}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}

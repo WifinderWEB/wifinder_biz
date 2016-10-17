@@ -1,0 +1,162 @@
+<?php
+
+//src/Wifinder/CallbackBundle/Entity/MailingAddress.php
+
+namespace Wifinder\CallbackBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * @ORM\Table(name="mailing_address")
+ * @ORM\Entity(repositoryClass="Wifinder\CallbackBundle\Entity\Repository\MailingAddressRepository")
+ * @UniqueEntity(fields="email", message="Sorry, this email is already in use.", groups={"MailingAddress"})
+ */
+class MailingAddress {
+    
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     * @Assert\NotBlank(message="Please enter alias.", groups={"MailingAddress"})
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
+     * @ORM\Column(type="string", length=225, nullable=true)
+     */
+    protected $email;
+    
+    /**
+     *
+     * @ORM\Column(type="string", length=225, nullable=true)
+     * @Assert\NotBlank(message="Please enter alias.", groups={"MailingAddress"})
+     * @Assert\Regex( 
+     *       pattern="/^[a-z,A-Z]+$/",
+     *       message="Field can contain only letters.", 
+     *       groups={"MailingAddress"}
+     * )
+     */
+    protected $first_name;
+    
+    /**
+     * @ORM\Column(type="string", length=225, nullable=true)
+     * @Assert\NotBlank(message="Please enter alias.", groups={"MailingAddress"})
+     * @Assert\Regex( 
+     *       pattern="/^[a-z,A-Z]+$/",
+     *       message="Field can contain only letters.", 
+     *       groups={"MailingAddress"}
+     * )
+     */
+    protected $middle_name;
+    
+    /**
+     * @ORM\Column(type="string", length=225, nullable=true)
+     * @Assert\NotBlank(message="Please enter alias.", groups={"MailingAddress"})
+     * @Assert\Regex( 
+     *       pattern="/^[a-z,A-Z]+$/",
+     *       message="Field can contain only letters.", 
+     *       groups={"MailingAddress"}
+     * )
+     */
+    protected $last_name;
+    
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $is_active = true;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Wifinder\WebItemBundle\Entity\EmailType", inversedBy="addresses")
+     * @ORM\JoinTable(name="emailtype_mailingaddress")
+     */
+    private $type;
+    
+    protected $action;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return MailingAddress
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set is_active
+     *
+     * @param boolean $isActive
+     * @return MailingAddress
+     */
+    public function setIsActive($isActive)
+    {
+        $this->is_active = $isActive;
+    
+        return $this;
+    }
+
+    /**
+     * Get is_active
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->is_active;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \Wifinder\CallbackBundle\Entity\EmailType $type
+     * @return MailingAddress
+     */
+    public function setType(\Wifinder\CallbackBundle\Entity\EmailType $type = null)
+    {
+        $this->type = $type;
+    
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \Wifinder\CallbackBundle\Entity\EmailType 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+}

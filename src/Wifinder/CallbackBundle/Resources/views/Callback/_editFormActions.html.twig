@@ -1,0 +1,22 @@
+<ul class="record_actions nav nav-tabs nav-stacked">
+    <li>
+        <a href="{{ path('admin_callback') }}">
+            <i class="icon-list"></i> {% trans from "admin" %}Back to the list{% endtrans %}
+        </a>
+    </li>
+    <li>
+        <a href="#" class="button_save_main_form">
+            <i class="icon-hdd"></i> {% trans from "admin" %}Save{% endtrans %}
+        </a>
+    </li>
+    <li>
+        <a href="#" class="button_save_and_close_main_form">
+            <i class="icon-hdd"></i> {% trans from "admin" %}Save and close{% endtrans %}
+        </a>
+    </li>
+    <li> 
+        <a href="#deleteCallbackModal_{{entity.id}}" role="button" class="button_delete_form" data-toggle="modal">
+            <i class="icon-trash icon-white"></i> {% trans from "admin" %}Delete{% endtrans %}
+        </a>
+    </li>
+</ul>

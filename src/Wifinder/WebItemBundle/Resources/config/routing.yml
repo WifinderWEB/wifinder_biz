@@ -1,0 +1,33 @@
+admin_web_item:
+  pattern:  /web_item
+  defaults: { _controller: WebItemBundle:WebItem:index}
+
+admin_web_item_new:
+  pattern:  /web_item/new
+  defaults: { _controller: WebItemBundle:WebItem:new}
+
+admin_web_item_create:
+  pattern:  /web_item/create
+  defaults: { _controller: WebItemBundle:WebItem:create}
+  requirements:
+     _method:  POST
+
+admin_web_item_edit:
+  pattern:  /web_item/{id}/edit
+  defaults: { _controller: WebItemBundle:WebItem:edit}
+  requirements:
+    id: \d+
+    
+admin_web_item_update:
+  pattern:  /web_item/{id}/update
+  defaults: { _controller: WebItemBundle:WebItem:update}
+  requirements:
+    _method:  POST
+    id: \d+
+    
+admin_web_item_delete:
+  pattern:  /web_item/{id}/delete
+  defaults: { _controller: WebItemBundle:WebItem:delete}
+  requirements:
+    _method:  POST
+    id: \d+

@@ -1,0 +1,52 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans from "admin" %}Project creation{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin" %}Project creation{% endtrans %}{% endblock %}
+
+{% block content %}
+<form action="{{ path('admin_project_create') }}" method="post" {{ form_enctype(form) }}  class="main_form">
+    <div class="tabbable">
+        <ul class="nav nav-tabs" id="content-tabs">
+            <li><a href="#field-row-content"><i class="icon-align-left"></i> {% trans from "admin" %}Base content{% endtrans %}</a></li>
+            <li><a href="#field-row-images"><i class="icon-picture"></i> {% trans from "admin" %}Images{% endtrans %}</a></li>
+            <li><a href="#field-row-files"><i class="icon-file"></i> {% trans from "admin" %}Files{% endtrans %}</a></li>
+            <li><a href="#field-row-meta"><i class="icon-globe"></i> {% trans from "admin" %}Metadata{% endtrans %}</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane" id="field-row-content">
+                {{form_row(form.is_active)}}
+                {{form_row(form.years)}}
+                {{form_row(form.sort)}}
+                {{form_row(form.alias)}}
+                {{form_widget(form.translations) }}
+                {{form_errors(form.translations) }}
+            </div>
+            <div class="tab-pane" id="field-row-images">
+                <ul class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e }}">
+                    {% for image in form.images %}
+                        <li>{{ form_widget(image) }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="tab-pane" id="field-row-files">
+                <ul class="files" data-prototype="{{ form_widget(form.files.vars.prototype)|e }}">
+                    {% for file in form.files %}
+                        {% include "ProjectBundle:Project:_file.html.twig" with {'file' : file }%}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="tab-pane" id="field-row-meta">
+                {{form_widget(form.meta) }}
+                {{form_errors(form.meta) }}
+            </div>
+        </div>
+    </div>
+        {{ form_widget(form._token) }}
+        {{ form_widget(form.action) }}
+</form>
+{% endblock %}
+
+{% block sidebar %}
+    {% include "ProjectBundle:Project:_newFormActions.html.twig" %}
+{% endblock %}

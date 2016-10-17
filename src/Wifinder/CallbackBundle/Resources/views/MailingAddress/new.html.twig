@@ -1,0 +1,15 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans from "admin" %}Add mail creation{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin" %}Add mail creation{% endtrans %}{% endblock %}
+
+{% block content %}
+<form action="{{ path('admin_mailingaddress_create') }}" method="post" {{ form_enctype(form) }} class="main_form">
+    {{ form_widget(form) }}
+</form>
+{% endblock %}
+
+{% block sidebar %}
+    {% include "CallbackBundle:MailingAddress:_newFormActions.html.twig" %}
+{% endblock %}

@@ -1,0 +1,10 @@
+<div>
+    <p class="text-info">
+        <i class="icon-info-sign"></i> <b>{% trans from "admin" %}Created:{% endtrans %}</b> {{entity.created|date('d-m-Y H:i:s')}}
+    </p>
+    {% if (entity.created != entity.updated)%}
+        <p class="text-info">
+            <i class="icon-info-sign"></i> <b>{% trans from "admin" %}Last updated:{% endtrans %}</b> {{entity.updated|date('d-m-Y H:i:s')}}
+        </p>
+    {% endif %}
+</div>

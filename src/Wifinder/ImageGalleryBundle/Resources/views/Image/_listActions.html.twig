@@ -1,0 +1,12 @@
+<ul class="record_actions nav nav-tabs nav-stacked">
+    <li>
+        <a href="{{ path('admin_image_gallery_category') }}">
+            <i class="icon-list"></i> {% trans from 'admin'%}Back to list gallery{% endtrans %}
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_image_gallery_new', {'category_id': category_id}) }}">
+            <i class="icon-plus"></i> {% trans from "admin" %}Add new image{% endtrans %}
+        </a>
+    </li>
+</ul>

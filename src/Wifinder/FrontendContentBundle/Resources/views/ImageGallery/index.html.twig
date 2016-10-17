@@ -1,0 +1,50 @@
+{% extends 'FrontendContentBundle::_frontendContainer.html.twig' %}
+
+{% set base = items|first %}
+{% set category = base.category %}
+{% block title %}<title>{{category.title}}</title>{% endblock %}
+
+{% block titlePage %}{{category.title}}{% endblock %}
+
+{% block stylesheets %}
+    {{parent()}}
+    <link href="{{ asset('/css/prettyPhoto.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+    
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{ asset('/js/jquery.prettyPhoto.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $().ready(function(){  
+             Frontend.singlePrettyPhoto('{{category.alias}}');
+        })
+    </script>
+{% endblock %}
+    
+{% block sidebar %}
+   {% render(controller( "FrontendContentBundle:Menu:sidebarMenu", {"alias" : category.alias })) %}
+{% endblock %}
+
+{% block breadCrumb %}
+    <ul class="breadcrumb">
+        <li><a href="{{"/"|localeLink}}">{% trans from 'content'%}Home page{% endtrans %}</a> <span class="divider">/</span></li>
+        <li><a href="{{"/company"|localeLink}}">{% trans from 'content'%}Company{% endtrans %}</a> <span class="divider">/</span></li>
+        <li class="active">{{category.title}}</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    {{category.description|raw}}
+    <div class="gallery_block">
+        <ul class="thumbnails">
+            {% for img in items %}
+                <li class="span3 thumbnail">
+                    <a href="{{img.webPath}}" rel="prettyPhoto[{{category.alias}}]" title="{{img.description}}">
+                        <img src="{{img.webPath | apply_filter('150x200_thumb')}}" alt="{{img.title}}"/>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+

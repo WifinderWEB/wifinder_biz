@@ -1,0 +1,21 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans with {'%email%' : entity.email } from "admin" %}Email edit - "%email%"{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans with {'%email%' : entity.email  } from "admin" %}Email edit - "%email%"{% endtrans %}{% endblock %}
+    
+{% block content %}
+    <form action="{{ path('admin_mailingaddress_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} class="main_form">
+        {{ form_widget(edit_form) }}
+    </form>
+
+    <form action="{{ path('admin_mailingaddress_delete', { 'id': entity.id }) }}" method="post"  class="delete_form" id="delete_form_{{entity.id}}">
+        {{ form_widget(delete_form) }}
+    </form>
+
+    {% include "CallbackBundle:MailingAddress:_modalDeleteEmail.html.twig" with {'id' : entity.id, 'email' : entity.email}%}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "CallbackBundle:MailingAddress:_editFormActions.html.twig" with {'entity' : entity }%}
+{% endblock %}

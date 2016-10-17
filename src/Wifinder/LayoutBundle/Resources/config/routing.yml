@@ -1,0 +1,33 @@
+admin_layout:
+  pattern:  /layout
+  defaults: { _controller: LayoutBundle:Layout:index}
+
+admin_layout_new:
+  pattern:  /layout/new
+  defaults: { _controller: LayoutBundle:Layout:new}
+    
+admin_layout_create:
+  pattern:  /layout/create
+  defaults: { _controller: LayoutBundle:Layout:create}
+  requirements:
+    _method:  POST
+    
+admin_layout_edit:
+  pattern:  /layout/{id}/edit
+  defaults: { _controller: LayoutBundle:Layout:edit}
+  requirements:
+    id: \d+
+
+admin_layout_update:
+  pattern:  /layout/{id}/update
+  defaults: { _controller: LayoutBundle:Layout:update}
+  requirements:
+    _method:  POST
+    id: \d+
+
+admin_layout_delete:
+  pattern:  /layout/{id}/delete
+  defaults: { _controller: LayoutBundle:Layout:delete}
+  requirements:
+    _method:  POST
+    id: \d+

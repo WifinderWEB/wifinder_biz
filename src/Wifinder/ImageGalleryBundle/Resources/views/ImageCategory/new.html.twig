@@ -1,0 +1,20 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans from "admin" %}Image Gallery creation{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin" %}Image Gallery creation{% endtrans %}{% endblock %}
+
+{% block content %}
+    <form action="{{ path('admin_image_gallery_category_create') }}" method="post" {{ form_enctype(form) }}  class="main_form">
+        {{ form_row(form.is_active) }}
+        {{ form_row(form.alias) }}
+        {{ form_widget(form.translations) }}
+        {{ form_errors(form.translations) }}
+        {{ form_widget(form._token) }} 
+        {{ form_widget(form.action) }}
+    </form>
+{% endblock %}
+
+{% block sidebar %}
+    {% include "ImageGalleryBundle:ImageCategory:_newFormActions.html.twig" %}
+{% endblock %}

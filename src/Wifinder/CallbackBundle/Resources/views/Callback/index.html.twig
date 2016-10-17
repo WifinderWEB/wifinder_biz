@@ -1,0 +1,55 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans from "admin"%}Callback list{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin"%}Callback list{% endtrans %}{% endblock %}
+
+{% block content %}
+    <table class="records_list table table-condensed table-hover table-striped table-bordered">
+        <thead>
+            <tr>
+                <th style="width: 250px;">{% trans from "admin"%}User{% endtrans %}</th>
+                <th>{% trans from "admin"%}Callback{% endtrans %}</th>
+                <th>{% trans from "admin"%}Is Received?{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                <td>
+                    <b>{{ entity.lastName }} {{entity.firstName}} {{entity.middleName}}</b>
+                    <hr/>
+                    <span class="muted"><b>{% trans from 'admin'%}Company:{% endtrans %} </b>{{entity.company}}</span><br/>
+                    <span class="muted"><b>{% trans from 'admin'%}Post:{% endtrans %} </b>{{entity.post}}</span><br/>
+                    <span class="muted"><b>{% trans from 'admin'%}Phone:{% endtrans %} </b>{{entity.phone}}</span><br/>
+                    <span class="muted"><b>{% trans from 'admin'%}Email:{% endtrans %} </b>{{entity.email}}</span>
+                </td>
+                <td>
+                    {{ entity.callbackText }}
+                    {% if entity.files|length > 0 %}
+                    <p>
+                        <hr/>
+                        <span class="muted"><b>{% trans from 'admin'%}Attachment files:{% endtrans %} </b></span><br/>
+                        {% for file in entity.files %}
+                            <span class="file_list_block">
+                                <a class="attachment_file" href="{{ path('admin_callback_get_file', { 'id': file.id }) }}"><i class="icon-file"></i> {{file.originName}}</a> 
+                                {% if file.description %}
+                                    <span class="muted file_description">({{file.description}})</span>
+                                {% endif %}
+                            </span>
+                        {% endfor %}
+                    </p>
+                    {% endif %}
+                </td>
+                <td>{% include "CallbackBundle:Callback:_labelActive.html.twig" with {'entity':entity} %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% include "CallbackBundle:Callback:_pagination.html.twig" %}
+    {% include "CallbackBundle:Callback:_filterForm.html.twig" %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "CallbackBundle:Callback:_listActions.html.twig" %}
+{% endblock %}

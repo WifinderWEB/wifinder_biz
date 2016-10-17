@@ -1,0 +1,42 @@
+admin_project:
+    pattern:  /project
+    defaults: { _controller: "ProjectBundle:Project:index" }
+
+admin_project_show:
+    pattern:  /project/{id}/show
+    defaults: { _controller: "ProjectBundle:Project:show" }
+
+admin_project_new:
+    pattern:  /project/new
+    defaults: { _controller: "ProjectBundle:Project:new" }
+
+admin_project_create:
+    pattern:  /project/create
+    defaults: { _controller: "ProjectBundle:Project:create" }
+    requirements: { _method: post }
+
+admin_project_edit:
+    pattern:  /project/{id}/edit
+    defaults: { _controller: "ProjectBundle:Project:edit" }
+
+admin_project_update:
+    pattern:  /project/{id}/update
+    defaults: { _controller: "ProjectBundle:Project:update" }
+    requirements: { _method: post }
+
+admin_project_delete:
+    pattern:  /project/{id}/delete
+    defaults: { _controller: "ProjectBundle:Project:delete" }
+    requirements: { _method: post }
+
+admin_project_change_active:
+  pattern:  /project/changeActive
+  defaults: { _controller: ProjectBundle:Project:changeActive, active: 0 }
+  
+admin_project_filter:
+  pattern:  /project/filter
+  defaults: { _controller: ProjectBundle:Project:filter}
+  
+admin_project_reset_filter:
+  pattern: /project/reset_filter
+  defaults: { _controller: ProjectBundle:Project:resetFilter}

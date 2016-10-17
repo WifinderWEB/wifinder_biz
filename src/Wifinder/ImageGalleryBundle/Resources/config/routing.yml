@@ -1,0 +1,83 @@
+admin_image_gallery_category:
+  pattern:  /image_gallery
+  defaults: { _controller: ImageGalleryBundle:ImageCategory:index}
+
+admin_image_gallery_category_new:
+  pattern:  /image_gallery/new
+  defaults: { _controller: ImageGalleryBundle:ImageCategory:new}
+  
+admin_image_gallery_category_create:
+  pattern:  /image_gallery/create
+  defaults: { _controller: ImageGalleryBundle:ImageCategory:create}
+  requirements:
+    _method:  POST
+    
+admin_image_gallery_category_edit:
+  pattern:  /image_gallery/{id}/edit
+  defaults: { _controller: ImageGalleryBundle:ImageCategory:edit}
+  requirements:
+    id: \d+
+  
+admin_image_gallery_category_update:
+  pattern:  /image_gallery/{id}/update
+  defaults: { _controller: ImageGalleryBundle:ImageCategory:update}
+  requirements:
+    id: \d+
+    _method:  POST
+    
+admin_image_gallery_category_delete:
+  pattern:  /image_gallery/{id}/delete
+  defaults: { _controller: ImageGalleryBundle:ImageCategory:delete}
+  requirements:
+    id: \d+
+    _method:  POST
+    
+admin_image_gallery_index:
+  pattern:  /image_gallery/{category_id}/image
+  defaults: { _controller: ImageGalleryBundle:Image:index}
+  requirements:
+    category_id:  \d+
+
+admin_image_gallery_new:
+  pattern:  /image_gallery/{category_id}/image/new
+  defaults: { _controller: ImageGalleryBundle:Image:new}
+  requirements:
+    category_id:  \d+
+  
+admin_image_gallery_create:
+  pattern:  /image_gallery/{category_id}/image/create
+  defaults: { _controller: ImageGalleryBundle:Image:create}
+  requirements:
+    category_id:  \d+
+    _method:  POST
+    
+admin_image_gallery_edit:
+  pattern:  /image_gallery/{category_id}/image/{id}/edit
+  defaults: { _controller: ImageGalleryBundle:Image:edit}
+  requirements:
+    category_id:  \d+
+    id: \d+
+  
+admin_image_gallery_update:
+  pattern:  /image_gallery/{category_id}/image/{id}/update
+  defaults: { _controller: ImageGalleryBundle:Image:update}
+  requirements:
+    category_id:  \d+
+    id: \d+
+    _method:  POST
+    
+admin_image_gallery_delete:
+  pattern:  /image_gallery/{category_id}/image/{id}/delete
+  defaults: { _controller: ImageGalleryBundle:Image:delete}
+  requirements:
+    category_id:  \d+
+    id: \d+
+    _method:  POST
+    
+admin_image_gallery_change_active:
+  pattern:  /image_gallery/image/changeActive
+  defaults: { _controller: ImageGalleryBundle:Image:changeActive, active: 0}
+  
+admin_image_gallery_category_change_active:
+  pattern:  /image_gallery/image_category/changeActive
+  defaults: { _controller: ImageGalleryBundle:ImageCategory:changeActive, active: 0}

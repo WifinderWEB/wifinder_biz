@@ -1,0 +1,227 @@
+﻿<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Site map</source>
+                <target>Карта сайта</target>
+            </trans-unit>
+	    <trans-unit id="2">
+                <source>Sorry, but your search did not match any page.</source>
+                <target>Извините, но по вашему запросу не найдено ни одной записи.</target>
+            </trans-unit>
+	    <trans-unit id="3">
+                <source>Edit the keywords and try again.</source>
+                <target>Измените ключевые слова и попробуйте еще раз.</target>
+            </trans-unit>
+	    <trans-unit id="4">
+                <source>Search result query - "%query%"</source>
+                <target>Результаты поска по запросу - "%query%"</target>
+            </trans-unit>
+	    <trans-unit id="5">
+                <source>Search</source>
+                <target>Поиск</target>
+            </trans-unit>
+	    <trans-unit id="6">
+                <source>All search results</source>
+                <target>Всего найдено</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>more...</source>
+                <target>подробнее...</target>
+            </trans-unit>
+	    <trans-unit id="8">
+                <source>Search result query "%query%" in catalog</source>
+                <target>Результаты поиска по запросу "%query%"</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Cansel</source>
+                <target>Завершить</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Submit</source>
+                <target>Отправить</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Form request a callback</source>
+                <target>Форма заявки на обратную связь</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Subscribe</source>
+                <target>Подписаться</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>to news</source>
+                <target>на новости</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>E-mail address</source>
+                <target>Адрес электронной почты</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Join</source>
+                <target>Присоединяйтесь</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Location on the map</source>
+                <target>Расположение на карте</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>SUPPLIERS</source>
+                <target>ПОСТАВЩИКИ</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>SUPPLIERS</source>
+                <target>ПОСТАВЩИКИ</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>NEWS</source>
+                <target>НОВОСТИ</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>PROJECTS</source>
+                <target>ПРОЕКТЫ</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>REVIEWS</source>
+                <target>ОТЗЫВЫ</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>View all news »</source>
+                <target>Смотреть все новости »</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>View all projects »</source>
+                <target>Смотреть все проекты »</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>View all reviews »</source>
+                <target>Смотреть все отзывы »</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>Home page</source>
+                <target>Домашняя</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>REQUEST A CALLBACK</source>
+                <target>ЗАКАЖИТЕ ОБРАТНЫЙ ЗВОНОК</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>NEWS IMAGES</source>
+                <target>ФОТОГАЛЕРЕЯ</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>News</source>
+                <target>Новости</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>view all ...</source>
+                <target>смотреть все ...</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>In all:</source>
+                <target>Всего:</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>PROJECT FILES</source>
+                <target>ФАЙЛЫ ПРОЕКТА</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>PROJECT IMAGES</source>
+                <target>ФОТОГАЛЕРЕЯ ПРОЕКТА</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>Projects</source>
+                <target>Проекты</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>Form review</source>
+                <target>Форма отзыва</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>Reviews</source>
+                <target>Отзывы</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>Write a review</source>
+                <target>Оставить отзыв</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>Access is denied!</source>
+                <target>В доступе отказано!</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>Please enter your name</source>
+                <target>Пожалуйста представьтесь</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>Please enter your review</source>
+                <target>Введите ваш отзыв</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>All Years</source>
+                <target>Все года</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>Login</source>
+                <target>Вход на сайт</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source>Registration</source>
+                <target>Регистрация</target>
+            </trans-unit>
+            <trans-unit id="42">
+                <source>Last news</source>
+                <target>Последние новости</target>
+            </trans-unit>
+            <trans-unit id="43">
+                <source>Last review</source>
+                <target>Последние отзывы</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>View all...</source>
+                <target>Читать все...</target>
+            </trans-unit>
+            <trans-unit id="45">
+                <source>All rights reserved.</source>
+                <target>Все права защищены.</target>
+            </trans-unit>
+            <trans-unit id="46">
+                <source>Ltd. “Wifinder”.</source>
+                <target>ООО “ВАЙФАЙНДЕР”.</target>
+            </trans-unit>
+            <trans-unit id="47">
+                <source>Company</source>
+                <target>О компании</target>
+            </trans-unit>
+            <trans-unit id="48">
+                <source>Subscribe</source>
+                <target>Подписаться</target>
+            </trans-unit>
+            <trans-unit id="49">
+                <source>to news</source>
+                <target>на новости</target>
+            </trans-unit>
+            <trans-unit id="50">
+                <source>Files for download</source>
+                <target>Файлы для загрузки</target>
+            </trans-unit>
+            <trans-unit id="51">
+                <source>Approvals/Certifications</source>
+                <target>Сертификаты</target>
+            </trans-unit>
+            <trans-unit id="52">
+                <source>Catalogs</source>
+                <target>Каталоги продукции</target>
+            </trans-unit>
+            <trans-unit id="53">
+                <source>Literature</source>
+                <target>Литература</target>
+            </trans-unit>
+            <trans-unit id="54">
+                <source>PARTNERSHIPS</source>
+                <target>ПАРТНЕРЫ</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

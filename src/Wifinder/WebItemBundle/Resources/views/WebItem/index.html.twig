@@ -1,0 +1,34 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans from "admin" %}Web Item list{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin" %}Web Item list{% endtrans %}{% endblock %}
+
+{% block content %}
+    <table class="records_list table table-condensed table-hover table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>{% trans from "admin" %}Alias{% endtrans %}</th>
+                <th>{% trans from "admin" %}Description{% endtrans %}</th>
+                <th>{% trans from "admin" %}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                <td>{{ entity.alias }}</td>
+                <td>{{ entity.description }}</td>
+                <td>
+                    {% include "WebItemBundle:WebItem:_listItemActions.html.twig" with {'entity' : entity, 'delete_form' : delete_form}%}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% include "WebItemBundle:WebItem:_pagination.html.twig" with {'pagination' : pagination} %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "WebItemBundle:WebItem:_listActions.html.twig" %}
+{% endblock %}

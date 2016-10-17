@@ -1,0 +1,15 @@
+<ul id="sidebar-nav" class="hidden">
+    {% if catalog %}
+        <li class="sidebar-nav-header gradient-darck">{{catalog.title}}</li>
+    {% endif %}
+    {% for item in catalog.children %}
+        <li>
+            <a class="{% if (item.alias == active) %} active{% endif %}" href="{{ path( 'wifinder_frontend_catalog', {'alias': item.alias} )}}"> 
+                {{ item.title}}
+            </a>
+            {% if (item.children|length > 0) %}
+                {% include 'FrontendContentBundle:Menu:_subCatalogMenu.html.twig' with {"children" : item.children, "id" : item.id} %}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

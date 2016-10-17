@@ -1,0 +1,46 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans from "admin" %}Image Category list{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin" %}Image Category list{% endtrans %}{% endblock %}
+
+{% block content %}
+    <table class="records_list table table-condensed table-hover table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>{% trans from "admin" %}Title{% endtrans %}</th>
+                <th>{% trans from "admin" %}Alias{% endtrans %}</th>
+                <th class="table_middle_center">{% trans from "admin" %}First 3 thumbs{% endtrans %}</th>
+                <th class="table_middle_center">{% trans from "admin" %}Is active?{% endtrans %}</th>
+                <th class="table_middle_center">{% trans from "admin" %}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                <td class="table_middle_left">{{ entity.title }}</td>
+                <td class="table_middle_left">{{ entity.alias }}</td>
+                <td class="table_middle_center">
+                    {% if entity.images|length > 0 %}
+                        {% for img in entity.images|slice(0,3) %}
+                            <img src="{{img.webPath | apply_filter('100x100_thumb')}}" alt="{{img.title}}" class="image_list_thumb"/>
+                        {% endfor %}
+                    {% else %}
+                            <span class="label label-warning">{% trans from "admin" %}Images not loaded.{% endtrans %}</span>
+                    {% endif %}
+                </td>
+                <td class="table_middle_center">
+                    {% include "ImageGalleryBundle:ImageCategory:_labelActive.html.twig" %}
+                </td>
+                <td class="table_middle_center">
+                    {% include "ImageGalleryBundle:ImageCategory:_listItemActions.html.twig" %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block sidebar %}
+    {% include "ImageGalleryBundle:ImageCategory:_listActions.html.twig" %}
+{% endblock %}

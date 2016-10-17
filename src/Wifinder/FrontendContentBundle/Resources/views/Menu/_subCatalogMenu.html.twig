@@ -1,0 +1,15 @@
+<ul>
+    {% for item in children %}
+        {% if item.catalogType.id == 1%}
+            <li>
+                <a class="{% if (item.alias == active) %}active{% endif %}" href="{{ path( 'wifinder_frontend_catalog', {'alias': item.alias} )}}" style="padding-left: {{(item.level-1)*20}}px"> 
+                  {{ item.title}}
+                </a>
+                {% if (item.children|length > 0) %}
+                    {% include "FrontendContentBundle:Menu:_subCatalogMenu.html.twig" with {"children" : item.children} %}
+                {% endif %}
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+

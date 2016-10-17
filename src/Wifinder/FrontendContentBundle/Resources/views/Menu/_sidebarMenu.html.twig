@@ -1,0 +1,31 @@
+<ul class="nav nav-pills nav-stacked" id="sidebar-nav">
+    {% set tt = items|first %}
+    {% if tt.parent is defined and tt.parent.level > 2%}
+        {% set start = tt.parent.title|slice(0, 1)%}
+        {% set other = tt.parent.title|slice(1) %}
+        {% if tt.parent.alias != alias%}
+            <li>
+                <a href="{{ tt.parent.link|localeLink }}">
+                    {{ start|upper}}{{other|lower}}
+                </a>
+            </li>
+        {% else %}
+            <li>
+                {{ start|upper}}{{other|lower}}
+            </li>
+        {% endif %}
+            <li>&nbsp;</li>
+    {% endif %}
+    {% for item in items %}
+        <li>
+            {% if alias != item.alias %}
+                <a href="{{ item.link|localeLink }}"> 
+                    {{ item.title}}
+                </a>
+            {% else %}
+                {{ item.title}}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+

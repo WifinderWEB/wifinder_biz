@@ -1,0 +1,64 @@
+<?php
+
+//src/Apollo/FileCategoryBundle/Entity/FileCategory.php
+
+namespace Apollo\FileCategoryBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Table(name="file_category")
+ * @ORM\Entity(repositoryClass="Apollo\FileCategoryBundle\Entity\Repository\FileCategoryRepository")
+ * @Gedmo\TranslationEntity(class="Apollo\FileCategoryBundle\Entity\FileCategoryTranslation")
+ */
+class FileCategory {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="string", length=100, unique=true)
+     */
+    protected $alias;
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $sort;
+    
+    /**
+    * @ORM\OneToMany(
+     *   targetEntity="Apollo\CatalogBundle\Entity\CatalogFile", 
+     *   mappedBy="catalog_file_category", 
+     *   cascade={"persist", "remove"})
+    */
+    protected $files;
+    
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $is_active = true;
+    
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="FileCategoryTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
+    
+}

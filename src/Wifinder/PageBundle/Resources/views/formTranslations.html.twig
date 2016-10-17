@@ -1,0 +1,70 @@
+{% extends "A2lixTranslationFormBundle::default.html.twig" %}
+
+{% block a2lix_translations_widget %}
+    {% set locales = form.vars.locales %}
+   
+
+    <div class="symfony-form-row-{{name}} tabbable">
+        <h4>{% trans from 'admin'%}Locales{% endtrans %}</h4>
+        <ul class="nav nav-tabs" id="translations-fields">
+            {% for locale in locales %}
+                <li><a href="#field-row-{{ locale }}">{{ locale|capitalize }}</a></li>
+            {% endfor %}
+        </ul>
+
+
+        <div class="tab-content">
+            {% for locale in locales %}
+                <div class="tab-pane" id="field-row-{{ locale }}">
+                    {# Natives fields for default locale #}
+                    {% if (fields is defined) %}
+
+                        {% for translationsLocale in form if (translationsLocale.vars.name == locale) %}
+                            {% for field in fields %}
+                                <p>{{ form_row(translationsLocale[field])}}</p>
+                            {% endfor %}
+                        {% endfor %}
+
+                    {# Translations fields #}
+                    {% else %}
+                        {% for translationsLocale in form if (translationsLocale.vars.name == locale) %}
+                            {{ form_widget(translationsLocale) }}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block a2lix_translations_gedmo_widget %}
+    <div class="symfony-form-row-{{name}} tabbable">
+        <ul class="nav nav-tabs" id="translations-fields">
+        {% for translationsLocales in form %}
+            {% set isDefaultLocale = ('defaultLocale' == translationsLocales.vars.name) %}
+
+            {% for translationsFields in translationsLocales %}
+                {% set locale = translationsFields.vars.name %}
+
+                <li {% if (app.request.locale == locale) %}class="active"{% endif %}>
+                    <a href="#field-row-{{ locale }}">
+                        {{ locale|capitalize }} {% if isDefaultLocale %}[Default]{% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+        {% endfor %}
+        </ul>
+
+        <div class="tab-content">
+        {% for translationsLocales in form %}
+            {% for translationsFields in translationsLocales %}
+                {% set locale = translationsFields.vars.name %}
+
+                <div class="tab-pane" id="field-row-{{ locale }}">
+                    {{ form_widget(translationsFields) }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

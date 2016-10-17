@@ -1,0 +1,23 @@
+{% block form_widget_compound %}
+{% spaceless %}
+    <table {{ block('widget_container_attributes') }}>
+        <tr>
+            {% if form.parent is empty %}
+                {{ form_errors(form) }}
+            {% endif %}
+            {{ block('form_rows') }}
+            {{ form_rest(form) }}
+            <td class="block_button"></td>
+        </tr>
+    </table>
+{% endspaceless %}
+{% endblock form_widget_compound %}
+
+{% block form_row %}
+{% spaceless %}
+    <td>
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    </td>
+{% endspaceless %}
+{% endblock form_row %}

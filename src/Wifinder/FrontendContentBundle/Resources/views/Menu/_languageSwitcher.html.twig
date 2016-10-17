@@ -1,0 +1,10 @@
+{% set il = 0 %}
+{% for key,value in langs%}
+        {% if key != activeLang %}
+            {% if il != 0 %}/{% endif %}
+            <a href="{{ path (routname, params|merge({'_locale' : key }))}}">{{value}}</a>
+        {% else %}
+            {{value}}
+        {% endif %}
+        {% set il = il + 1 %}
+{% endfor %}

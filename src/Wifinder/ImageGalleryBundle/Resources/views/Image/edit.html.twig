@@ -1,0 +1,57 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{ asset('/js/jquery.prettyPhoto.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        FormAction.singleEditFormPrettyPhoto('admin_image');
+    </script>
+{% endblock %}
+    
+{% block stylesheets %}
+    {{parent()}}
+    <link href="{{ asset('/css/prettyPhoto.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+    
+{% block title %}{% trans with {'%title%' : entity.title } from "admin" %}Image "%title%" edit{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans with {'%title%' : entity.title } from "admin" %}Image "%title%" edit{% endtrans %}{% endblock %}
+
+{% block content %}
+    <form action="{{ path('admin_image_gallery_update', { 'id': entity.id, 'category_id': entity.categoryId }) }}" method="post" {{ form_enctype(edit_form) }} class="main_form">
+        {{ form_row(edit_form.is_active) }}
+        <div class="symfony-form-row-image">
+            {{ form_label(edit_form.image) }}
+            <div class="thumb_image">
+                <ul class="thumbnails">
+                    <li>
+                        <div class="thumbnail">
+                            <a href="{{entity.webPath}}" rel="prettyPhoto[admin_image]" title="{% trans from 'admin' %}Click on the image to view the original version.{% endtrans %}">
+                                <img src="{{entity.webPath | apply_filter('220x220_thumb')}}" alt="{{entity.title}}"/>
+
+                            </a>
+                            <p>{% trans from 'admin' %}Thumb 220x220{% endtrans %}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="symfony-form-field">
+                {{ form_widget(edit_form.image) }}
+                {{ form_errors(edit_form.image) }}
+            </div>
+        </div>
+        {{ form_widget(edit_form.translations) }}
+        {{ form_errors(edit_form.translations) }}
+        {{ form_row(edit_form._token) }} 
+        {{ form_row(edit_form.action) }}
+    </form>
+
+    <form action="{{ path('admin_image_gallery_delete', { 'id': entity.id, 'category_id': entity.categoryId }) }}" method="post" id="delete_form_{{entity.id }}">
+        {{ form_widget(delete_form) }}
+    </form>
+    {% include "ImageGalleryBundle:Image:_modalDeleteImage.html.twig" with {'id' : entity.id, 'title' : entity.title}%}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "ImageGalleryBundle:Image:_editFormActions.html.twig"%}
+{% endblock %}

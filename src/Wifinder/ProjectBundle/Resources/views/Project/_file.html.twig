@@ -1,0 +1,26 @@
+<li class="file_box">
+    <div class="file_preview">
+        <table>
+            <tr>
+                <td><a href="{{file.vars.value.webPath}}">{{file.vars.value.title}}</a></td>
+                <td>
+                    <div class="btn-group">
+                        <a href="#fileProjectModal_{{file.vars.value.id}}" class="btn btn-small" data-toggle="modal" role="button"><i class="icon-edit"></i> {% trans from "admin" %}edit{% endtrans %}</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="fileProjectModal_{{file.vars.value.id}}" class="modal hide fade file_form_fields" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <h4 id="myModalLabel">{% trans with {'%title%' : file.vars.value.title } from "admin" %}Edit file "%title%"{% endtrans %}</h4>
+        </div>
+        <div class="modal-body">
+            {{ form_widget(file) }}
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <i class="icon-ok"></i> {% trans from "admin" %}Save{% endtrans %}</button>
+        </div>
+    </div>
+</li>

@@ -1,0 +1,24 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans with {'%id%' : entity.id } from 'admin'%}Review edit - "%id%"{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans with {'%id%' : entity.id } from 'admin'%}Review edit - "%id%"{% endtrans %}{% endblock %}
+
+{% block content %}
+    <form action="{{ path('admin_review_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}  class="main_form">
+        <div>
+            <p class="text-info">
+                <i class="icon-info-sign"></i> <b>{% trans from "admin" %}Created:{% endtrans %}</b> {{entity.created|date('d-m-Y H:i:s')}}
+            </p>
+        </div>
+        {{ form_widget(edit_form) }}
+    </form>
+    <form action="{{ path('admin_review_delete', { 'id': entity.id }) }}" method="post" class="delete_form" id="delete_form_{{entity.id}}">
+        {{ form_widget(delete_form) }}
+    </form>
+    {% include "CallbackBundle:Review:_modalDeleteReview.html.twig" with {'id' : entity.id}%}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "CallbackBundle:Review:_editFormActions.html.twig" %}
+{% endblock %}

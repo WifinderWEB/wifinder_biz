@@ -1,0 +1,208 @@
+<?php
+//src/Apollo/WebItemBundle/Entity/WebItem.php
+
+namespace Apollo\WebItemBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * @ORM\Table(name="web_item")
+ * @Gedmo\TranslationEntity(class="Apollo\WebItemBundle\Entity\WebItemTranslation")
+ * @ORM\Entity(repositoryClass="Apollo\WebItemBundle\Entity\Repository\WebItemRepository")
+ * @UniqueEntity(fields="alias", message="Sorry, this alias is already in use.", groups={"webitem"})
+ */
+class WebItem {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column( type="string", length=100, unique=true)
+     * @Assert\NotBlank
+     * @Assert\Regex( 
+     *       pattern="/^[a-z,A-Z,\_,\-,0-9]+$/",
+     *       message="Alias can contain only letters, numbers and symbols '_' , '-'."
+     * )
+     */
+    protected $alias;
+    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $description;
+
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $content;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $is_active = true;
+    
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="WebItemTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity=" \Apollo\PageBundle\Entity\Content", inversedBy="web_items")
+     * @ORM\JoinTable(name="content_web_item")
+     */
+    protected $join_contents;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
+    }
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set alias
+     *
+     * @param string $alias
+     * @return WebItem
+     */
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
+    
+        return $this;
+    }
+
+    /**
+     * Get alias
+     *
+     * @return string 
+     */
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+    
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return WebItem
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     * @return WebItem
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string 
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Add translations
+     *
+     * @param \Apollo\WebItemBundle\Entity\WebItemTranslation $translations
+     * @return WebItem
+     */
+    public function addTranslation(WebItemTranslation $t)
+    {
+        if (!$this->translations->contains($t)) {
+            $this->translations[] = $t;
+            $t->setObject($this);
+        }
+    }
+
+    /**
+     * Remove translations
+     *
+     * @param \Apollo\WebItemBundle\Entity\WebItemTranslation $translations
+     */
+    public function removeTranslation(\Apollo\WebItemBundle\Entity\WebItemTranslation $translations)
+    {
+        $this->translations->removeElement($translations);
+    }
+
+    /**
+     * Get translations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+    
+    /**
+     * Set is_active
+     *
+     * @param boolean $isActive
+     * @return WebItem
+     */
+    public function setIsActive($isActive) {
+        $this->is_active = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get is_active
+     *
+     * @return boolean 
+     */
+    public function getIsActive() {
+        return $this->is_active;
+    }
+}

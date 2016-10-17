@@ -1,0 +1,55 @@
+{% extends 'FrontendContentBundle::_frontendContainer.html.twig' %}
+
+{% block titlePage %}{{ content.title }}{% endblock %}
+
+{% block title %}
+    {% if content.meta and content.meta.metaTitle|trim|length > 0 %}
+        <title>{{content.meta.metaTitle}}</title>
+    {% else %}
+        <title>{{content.title|raw}}</title>
+    {% endif%}
+{% endblock %}
+    
+{% block meta_description %}
+    {% if content.meta and content.meta.metaDescription|trim|length > 0 %}
+        <meta name="description" content="{{content.meta.metaDescription|trim}}"/>
+    {% endif %}
+{% endblock %}
+{% block meta_keywords %}
+    {% if content.meta and content.meta.metaKeywords|trim|length > 0%}
+        <meta name="keywords" content="{{content.meta.metaKeywords|trim}}"/>
+    {% endif %}
+{% endblock %}
+
+{% block breadCrumb %}
+    <ul class="breadcrumb">
+        {% set link = "/"%}
+        <li><a href="{{link|localeLink()}}">{% trans from 'content'%}Home page{% endtrans %}</a> <span class="divider">/</span></li>
+        <li><a href="{{ path('wifinder_frontend_catalog', {'alias' : content.parent.alias}) }}">{{content.parent.title}}</a> <span class="divider">/</span></li>
+        <li class="active">{{content.title}}</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+   <div class="product_images">
+       {% for img in content.images%}
+           <img src="{{img.webPath}}" alt="{{img.title}}"/>
+       {% endfor %}
+   </div>
+   <div class="clear"></div>
+{#   <div>{{ content.shortDescription | raw }}</div>#}
+   <div>{{ content.description | raw }}</div>
+   
+   {% render(controller( "FrontendContentBundle:Catalog:filesList", {"files" : content.files }))%}
+   
+   {% render(controller( "FrontendContentBundle:WebItem:renderItem", {"alias" : "buy"})) %}
+{% endblock %}
+
+{% block sidebar %}
+    {% render(controller( "FrontendContentBundle:Menu:sidebarMenu", {"alias" : content.parent.alias })) %}
+{% endblock %}
+   
+{% block right_sidebar %}
+    {{ parent() }}
+    {% include "FrontendContentBundle:WebItem:_renderListItems.html.twig" with {"web_items" : content.webItems} %}
+{% endblock %}

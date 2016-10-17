@@ -1,0 +1,12 @@
+{% if files|length > 0%}
+<h2>{% trans from 'content' %}PROJECT FILES{% endtrans %}</h2>
+<div class="files_block">
+    <ul>
+        {% for one in files %}
+        <li>
+            <a href="{{one.webPath}}">{{one.title}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

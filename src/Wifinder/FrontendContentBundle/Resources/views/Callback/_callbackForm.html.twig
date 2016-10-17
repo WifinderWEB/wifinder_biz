@@ -1,0 +1,19 @@
+<form action="{{ path('request_callback')}}" {{ form_enctype(form) }} id="callback_form">
+    <div>
+        {{form_errors(form.full_name) }}
+        {{ form_widget(form.full_name) }}
+    </div>
+    <div>
+        {{form_errors(form.email) }}
+        {{ form_widget(form.email) }}
+    </div>
+    <div>
+        {{form_errors(form.phone) }}
+        {{ form_widget(form.phone) }}
+    </div>
+    <div>
+        {{form_errors(form.callback_text) }}
+        {{ form_widget(form.callback_text) }}
+    </div>
+        {{ form_widget(form._token) }}
+</form>

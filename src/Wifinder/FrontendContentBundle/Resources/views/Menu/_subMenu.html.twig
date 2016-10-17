@@ -1,0 +1,12 @@
+<ul rel="{{id}}">
+    {% for item in children %}
+        <li>
+            <a class="{% if (item.alias == active) %}active{% endif %}" href="{{ item.link|localeLink }}" style="padding-left: {{(item.level-1)*20}}px"> 
+              {{ item.title}}
+            </a>
+            {% if (item.children|length > 0) %}
+                {% include 'FrontendContentBundle:Menu:_subMenu.html.twig' with {"children" : item.children, "id" : item.id} %}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

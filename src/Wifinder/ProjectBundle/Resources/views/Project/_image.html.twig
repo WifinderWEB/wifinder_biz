@@ -1,0 +1,30 @@
+<li class="image_box">
+    <div class="file_preview image_preview thumbnail">
+        <div class="thumb_image">
+            <a href="{{image.vars.value.webPath}}" rel="prettyPhoto[admin_image]" title="{% trans from 'admin' %}Click on the image to view the original version.{% endtrans %}">
+               <img src="{{image.vars.value.webPath | apply_filter('220x220_thumb')}}" alt="{{image.vars.value.title}}"/>
+            </a>
+            <p class="text-info">{% trans from 'admin' %}Thumb 220x220{% endtrans %}</p>
+        </div>
+        <div>
+            <div class="title_file">
+                {{image.vars.value.title}}
+            </div>
+            <div class="btn-group">
+                <a href="#imageProjectModal_{{image.vars.value.id}}" class="btn btn-small" data-toggle="modal" role="button"><i class="icon-edit"></i> {% trans from "admin" %}edit{% endtrans %}</a>
+            </div>
+        </div>
+    </div>
+    <div id="imageProjectModal_{{image.vars.value.id}}" class="modal hide fade file_form_fields" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <h4 id="myModalLabel">{% trans with {'%title%' : image.vars.value.title } from "admin" %}Edit image "%title%"{% endtrans %}</h4>
+        </div>
+        <div class="modal-body">
+            {{ form_widget(image) }}
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <i class="icon-ok"></i> {% trans from "admin" %}Save{% endtrans %}</button>
+        </div>
+    </div>
+</li>

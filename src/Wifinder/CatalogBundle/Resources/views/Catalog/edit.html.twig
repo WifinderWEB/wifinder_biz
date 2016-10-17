@@ -1,0 +1,64 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans with {'%title%' : entity.title } from "admin" %}Catalog edit - "%title%"{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans with {'%title%' : entity.title  } from "admin" %}Catalog edit - "%title%"{% endtrans %}{% endblock %}
+
+{% block content %}
+    <form action="{{ path('admin_catalog_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}  class="main_form">
+        <div class="tabbable">
+            <ul class="nav nav-tabs" id="content-tabs">
+                <li><a href="#field-row-content"><i class="icon-align-left"></i> {% trans from "admin" %}Base content{% endtrans %}</a></li>
+                <li><a href="#field-row-images"><i class="icon-picture"></i> {% trans from "admin" %}Images{% endtrans %}</a></li>
+                <li><a href="#field-row-files"><i class="icon-file"></i> {% trans from "admin" %}Files{% endtrans %}</a></li>
+                <li><a href="#field-row-meta"><i class="icon-globe"></i> {% trans from "admin" %}Metadata{% endtrans %}</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane" id="field-row-content">
+                    {{form_row(edit_form.is_active)}}
+                    {{form_row(edit_form.parent)}}
+                    {{form_row(edit_form.catalog_type)}}
+                    {{form_row(edit_form.alias)}}     
+                    {{form_widget(edit_form.translations) }}
+                    {{form_errors(edit_form.translations) }}
+                </div>
+                <div class="tab-pane" id="field-row-images">
+                    <ul class="images" data-prototype="{{ form_widget(edit_form.images.vars.prototype)|e }}">
+                        {% set i = 0%}
+                        {% for image in edit_form.images %}
+                            {% include "CatalogBundle:Catalog:_image.html.twig" with {'image' : image }%}
+                            {% set i = i+1 %}
+                            {% if (i == 4)%}
+                                <div class="clear bottom_border"></div>
+                                {% set i = 0 %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="tab-pane" id="field-row-files">
+                    <ul class="files" data-prototype="{{ form_widget(edit_form.files.vars.prototype)|e }}">
+                        {% for file in edit_form.files %}
+                            {% include "CatalogBundle:Catalog:_file.html.twig" with {'file' : file }%}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="tab-pane" id="field-row-meta">
+                    {{form_widget(edit_form.meta) }}
+                    {{form_errors(edit_form.meta) }}
+                </div>
+            </div>
+        </div>
+        {{ form_widget(edit_form._token) }} 
+        {{ form_widget(edit_form.action) }}
+    </form>
+
+    <form action="{{ path('admin_catalog_delete', { 'id': entity.id }) }}" method="post"  class="delete_form" id="delete_form_{{entity.id}}">
+        {{ form_widget(delete_form) }}
+    </form>
+
+    {% include "CatalogBundle:Catalog:_modalDeleteCatalog.html.twig" with {'id' : entity.id, 'title' : entity.title, 'type': entity.catalogType.id}%}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "CatalogBundle:Catalog:_editFormActions.html.twig" with {'entity' : entity }%}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% if items | length > 0%}
+<ul>
+    {% for item in items %}
+        <li>
+            {#{% for img in item.images %}
+                {% if loop.index == 1%}
+                <img src="{{img.webPath | apply_filter('120x120_thumb')}}" alt="{{img.title}}"/>
+                {% endif %}
+            {% endfor %}#}
+            <a href="{{item.alias|localeLink('/projects/')}}">{{item.title}}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}

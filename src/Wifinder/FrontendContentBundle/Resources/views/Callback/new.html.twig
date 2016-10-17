@@ -1,0 +1,141 @@
+{% set layout = '_frontendContainer.html.twig' %}
+{% if content.layout %}
+    {% set layout = content.layout.file %}
+{% endif %}
+{% extends 'FrontendContentBundle::' ~ layout %}
+
+{% block titlePage %}{{content.title|raw}}{% endblock %}
+
+{% block title %}
+    {% if content.meta and content.meta.metaTitle|trim|length > 0 %}
+        <title>{{content.meta.metaTitle}}</title>
+    {% else %}
+        <title>{{content.title|raw}}</title>
+    {% endif%}
+{% endblock %}
+    
+{% block meta_description %}
+    {% if content.meta and content.meta.metaDescription|trim|length > 0 %}
+        <meta name="description" content="{{content.meta.metaDescription|trim}}"/>
+    {% endif %}
+{% endblock %}
+{% block meta_keywords %}
+    {% if content.meta and content.meta.metaKeywords|trim|length > 0%}
+        <meta name="keywords" content="{{content.meta.metaKeywords|trim}}"/>
+    {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+   {% render(controller( "FrontendContentBundle:Menu:sidebarMenu", {"alias" : content.alias })) %}
+{% endblock %}
+
+{% block content %}
+   {{content.content|raw}}
+<br/>
+<script type="text/javascript" src="http://formz.diplom48.ru/api/getJS/wf.form.js"></script>
+        <script type="text/javascript">
+                var wf = new WfForm();
+                wf.SetOptions({
+                       form: 'sale_esser_by_honeywell',
+                       container: 'sale_esser_by_honeywell_form',
+                       redirect_url: 'http://wifinder.biz/sale_esser_by_honeywell/created'
+                });
+                wf.Init.Module();
+        </script>
+        <div id="sale_esser_by_honeywell_form"></div>
+
+
+   {#<form action="{{ path('frontend_callback_create')}}" {{ form_enctype(form) }} id="callback_form_static" method="POST">
+       <fieldset>
+            <legend>ЗАПОЛНИТЕ ЗАЯВКУ для расчета стоимости заказа</legend>
+            <table>
+                <tr>
+                    <td class="first"><label>ФИО</label></td>
+                    <td>
+                        <div>
+                            {{ form_errors(form.full_name) }}
+                            {{ form_widget(form.full_name) }}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first"><label>Должность</label></td>
+                    <td>
+                        <div>
+                            {{ form_errors(form.post) }}
+                            {{ form_widget(form.post) }}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first"><label>Компания</label></td>
+                    <td>
+                        <div>
+                            {{ form_errors(form.company) }}
+                            {{ form_widget(form.company) }}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first"><label>E-mail</label></td>
+                    <td>
+                        <div>
+                            {{ form_errors(form.email) }}
+                            {{ form_widget(form.email) }}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first"><label>Телефон</label></td>
+                    <td>
+                        <div>
+                            {{ form_errors(form.phone) }}
+                            {{ form_widget(form.phone) }}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first text_top"><label>Текст заявки</label></td>
+                    <td>
+                        <div>
+                            {{ form_errors(form.callback_text) }}
+                            {{ form_widget(form.callback_text) }}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="add_file"><a href="javascript:void(0)">Приложить документ</a></td>
+                </tr>
+                <tr id="file_box">
+                    <td colspan="2">
+                        {% include "FrontendContentBundle:Callback:_addFiles.html.twig" %}
+                    </td>
+                </tr>
+            </table>#}
+            {#<div>
+                {{ form_errors(form.captcha) }}
+                {{ form_widget(form.captcha) }}
+            </div>#}
+                {#{{ form_widget(form._token) }}
+            
+       </fieldset>
+    </form>
+    <div>
+        <table class="button_group">
+            <tr>#}
+                {#<td><a href="{{"/"|localeLink}}">ОТМЕНА</a></td>#}
+                {#<td><input type="submit" form="callback_form_static" value="ОТПРАВИТЬ"/></td>
+            </tr>
+        </table>
+    </div>#}
+   <div class="block_text_gray">
+       {% render(controller( "FrontendContentBundle:WebItem:renderItem", {"alias" : content.alias})) %}
+       <div class="clear"></div>
+   </div>
+{% endblock %}
+
+{% block right_sidebar %}
+    {{ parent() }}
+    {% include "FrontendContentBundle:WebItem:_renderListItems.html.twig" with {"web_items" : content.webItems} %}
+{% endblock %}

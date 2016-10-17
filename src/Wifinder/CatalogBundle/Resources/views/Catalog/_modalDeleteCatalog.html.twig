@@ -1,0 +1,20 @@
+<div id="deleteCatalogModal_{{id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <h3 id="myModalLabel">{% trans from "admin" %}Are you sure?{% endtrans %}</h3>
+    </div>
+    <div class="modal-body">
+        <p><i class="icon-warning-sign"></i> 
+            {% if type == 1 %}
+                {% trans with {'%title%' : title } from "admin" %}The Category "%title%" will be removed from the catalog. Also will remove all related subcategories, products, files and images.{% endtrans %}</p>
+            {% else %}
+                {% trans with {'%title%' : title } from "admin" %}The product "%title%" will be removed from the catalog. Also will remove all related files and images.{% endtrans %}
+            {% endif %}
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">
+            <i class="icon-remove"></i> {% trans from "admin" %}Cansel{% endtrans %}</button>
+        <button class="btn btn-danger" onclick="FormAction.deleteContent({{id}})">
+            <i class="icon-trash icon-white"></i> {% trans from "admin" %}Yes delete{% endtrans %}
+        </button>
+    </div>
+</div>

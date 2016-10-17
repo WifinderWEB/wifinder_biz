@@ -1,0 +1,9 @@
+{% extends '::admin.html.twig' %}
+
+{% block body %}
+    <h2>{% block titlePage%}{% endblock %}</h2>
+    
+    {% include "::_alert.html.twig"%}
+    
+    {% block content %}{% endblock %}
+{% endblock %}

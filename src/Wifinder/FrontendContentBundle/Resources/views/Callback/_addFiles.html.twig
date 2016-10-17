@@ -1,0 +1,8 @@
+{% form_theme form.files 'FrontendContentBundle:form_theme:embedFile.html.twig' %}
+<div>
+    <ul class="files" data-prototype="{{ form_widget(form.files.vars.prototype)|e }}">
+        {% for file in form.files %}
+            {% include "FrontendContentBundle:Callback:_file.html.twig" with {'file' : file }%}
+        {% endfor %}
+    </ul>
+</div>

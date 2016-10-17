@@ -1,0 +1,37 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans from "admin" %}Content creation{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin" %}Content creation{% endtrans %}{% endblock %}
+
+{% block content %}
+<form action="{{ path('admin_content_create') }}" method="post" {{ form_enctype(form) }} class="main_form">
+    <div class="tabbable">
+            <ul class="nav nav-tabs" id="content-tabs">
+                <li><a href="#field-row-content"><i class="icon-align-left"></i> {% trans from "admin" %}Base content{% endtrans %}</a></li>
+                <li><a href="#field-row-meta"><i class="icon-globe"></i> {% trans from "admin" %}Metadata{% endtrans %}</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane" id="field-row-content">
+                    {{form_row(form.is_active)}}
+                    {{form_row(form.layout)}} 
+                    {{form_row(form.alias)}}     
+                    {{form_widget(form.translations) }}
+                    {{form_errors(form.translations) }}
+                    {{ form_widget(form['show_editor']) }}
+                    {{ form_label(form['show_editor']) }}
+                </div>
+                <div class="tab-pane" id="field-row-meta">
+                    {{form_widget(form.meta) }}
+                    {{form_errors(form.meta) }}
+                </div>
+            </div>
+        </div>
+        {{ form_widget(form._token) }}
+        {{ form_widget(form.action) }} 
+</form>
+{% endblock %}
+
+{% block sidebar %}
+    {% include "PageBundle:Content:_newFormActions.html.twig"%}
+{% endblock %}

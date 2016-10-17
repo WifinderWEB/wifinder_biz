@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Content list</source>
+                <target>Контент</target>
+            </trans-unit>
+			<trans-unit id="2">
+                <source>Alias</source>
+                <target>Псевдоним</target>
+            </trans-unit>
+			<trans-unit id="3">
+                <source>Actions</source>
+                <target>Действия</target>
+            </trans-unit>
+			<trans-unit id="4">
+                <source>edit</source>
+                <target>редактировать</target>
+            </trans-unit>
+			<trans-unit id="5">
+                <source>Edit</source>
+                <target>Редактировать</target>
+            </trans-unit>
+			<trans-unit id="6">
+                <source>delete</source>
+                <target>удалить</target>
+            </trans-unit>
+			<trans-unit id="7">
+                <source>Delete</source>
+                <target>Удалить</target>
+            </trans-unit>
+			<trans-unit id="8">
+                <source>Are you sure?</source>
+                <target>Вы уверены?</target>
+            </trans-unit>
+			<trans-unit id="9">
+                <source>Cansel</source>
+                <target>Отменить</target>
+            </trans-unit>
+			<trans-unit id="10">
+                <source>Yes delete</source>
+                <target>Да удалить</target>
+            </trans-unit>
+			<trans-unit id="11">
+                <source>The content "%title%" will be removed.</source>
+                <target>Контент "%title%" будет удален.</target>
+            </trans-unit>
+			<trans-unit id="12">
+                <source>Create a new entry</source>
+                <target>Создать новую запись</target>
+            </trans-unit>
+			<trans-unit id="13">
+                <source>Create</source>
+                <target>Создать</target>
+            </trans-unit>
+			<trans-unit id="14">
+                <source>Back to the list</source>
+                <target>Вернуться к списку</target>
+            </trans-unit>
+			<trans-unit id="15">
+                <source>Content edit - "%title%"</source>
+                <target>Редактировать - "%title%"</target>
+            </trans-unit>
+			<trans-unit id="16">
+                <source>Is active?</source>
+                <target>Показать?</target>
+			</trans-unit>
+			<trans-unit id="17">
+                <source>Base content</source>
+                <target>Основной контент</target>
+            </trans-unit>
+			<trans-unit id="18">
+                <source>Metadata</source>
+                <target>Метаданные</target>
+            </trans-unit>
+			<trans-unit id="19">
+                <source>Is active</source>
+                <target>Видим</target>
+            </trans-unit>
+			<trans-unit id="20">
+                <source>Locales</source>
+                <target>Локализация контента</target>
+            </trans-unit>
+			<trans-unit id="21">
+                <source>Change status</source>
+                <target>Изменить статус</target>
+            </trans-unit>
+			<trans-unit id="22">
+                <source>Title</source>
+                <target>Заголовок</target>
+            </trans-unit>
+			<trans-unit id="23">
+                <source>Save</source>
+                <target>Сохранить</target>
+            </trans-unit>
+			<trans-unit id="24">
+                <source>Save and close</source>
+                <target>Сохранить и закрыть</target>
+            </trans-unit>
+			<trans-unit id="25">
+                <source>Content creation</source>
+                <target>Создание новой страницы</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

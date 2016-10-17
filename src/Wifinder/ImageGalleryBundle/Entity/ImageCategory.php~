@@ -1,0 +1,46 @@
+<?php
+
+//src/Apollo/ImageGalleryBundle/Entity/ImageCategory.php
+
+namespace Apollo\ImageGalleryBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Table(name="image_gallery_category")
+ * @ORM\Entity(repositoryClass="Apollo\ImageGalleryBundle\Entity\Repository\ImageCategoryRepository")
+ * @Gedmo\TranslationEntity(class="Apollo\ImageGalleryBundle\Entity\ImageCategoryTranslation")
+ * @ORM\HasLifecycleCallbacks
+ */
+class ImageCategory {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $title;
+
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $description;
+    
+    /**
+    * @ORM\OneToMany(
+     *   targetEntity="Image", 
+     *   mappedBy="category", 
+     *   cascade={"persist", "remove"})
+    */
+    protected $images;
+}

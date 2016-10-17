@@ -1,0 +1,561 @@
+<?php
+
+//src/Apollo/CatalogBundle/Entity/Catalog.php
+
+namespace Apollo\CatalogBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Table(name="catalog")
+ * @Gedmo\Tree(type="nested")
+ * @ORM\Entity(repositoryClass="Apollo\CatalogBundle\Entity\Repository\CatalogRepository")
+ * @Gedmo\TranslationEntity(class="Apollo\CatalogBundle\Entity\CatalogTranslation")
+ */
+class Catalog {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=100, unique=true)
+     * @Assert\NotBlank()
+     */
+    protected $alias;
+    
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $title;
+    
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $short_description;
+    
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $description;
+    
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $is_active = true;
+
+    /**
+     * @Gedmo\TreeLeft
+     * @ORM\Column(type="integer")
+     */
+    private $lft;
+
+    /**
+     * @Gedmo\TreeRight
+     * @ORM\Column(type="integer")
+     */
+    private $rgt;
+
+    /**
+     * @Gedmo\TreeParent
+     * @ORM\ManyToOne(targetEntity="Catalog", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $parent;
+
+    /**
+     * @Gedmo\TreeRoot
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $root;
+
+    /**
+     * @Gedmo\TreeLevel
+     * @ORM\Column(name="lvl", type="integer")
+     */
+    private $level;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Catalog", mappedBy="parent")
+     */
+    private $children;
+
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="CatalogTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
+    
+    /**
+    * @ORM\OneToMany(
+     *   targetEntity="CatalogImage", 
+     *   mappedBy="catalog", 
+     *   cascade={"persist", "remove"})
+    */
+    private $images;
+    
+    /**
+    * @ORM\OneToMany(
+     *   targetEntity="CatalogFile", 
+     *   mappedBy="catalog", 
+     *   cascade={"persist", "remove"})
+    */
+    private $files;
+    
+    /**
+     * @ORM\ManyToOne(
+     *   targetEntity="CatalogType", 
+     *   inversedBy="catalog")
+     * @ORM\JoinColumn(
+     *   name="catalog_type_id", 
+     *   referencedColumnName="id", 
+     *   onDelete="CASCADE")
+     */
+    private $catalog_type;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="CatalogMeta")
+    */
+    protected $meta;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->files = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set alias
+     *
+     * @param string $alias
+     * @return Catalog
+     */
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
+    
+        return $this;
+    }
+
+    /**
+     * Get alias
+     *
+     * @return string 
+     */
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Catalog
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set short_description
+     *
+     * @param string $shortDescription
+     * @return Catalog
+     */
+    public function setShortDescription($shortDescription)
+    {
+        $this->short_description = $shortDescription;
+    
+        return $this;
+    }
+
+    /**
+     * Get short_description
+     *
+     * @return string 
+     */
+    public function getShortDescription()
+    {
+        return $this->short_description;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Catalog
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set is_active
+     *
+     * @param boolean $isActive
+     * @return Catalog
+     */
+    public function setIsActive($isActive)
+    {
+        $this->is_active = $isActive;
+    
+        return $this;
+    }
+
+    /**
+     * Get is_active
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->is_active;
+    }
+
+    /**
+     * Set lft
+     *
+     * @param integer $lft
+     * @return Catalog
+     */
+    public function setLft($lft)
+    {
+        $this->lft = $lft;
+    
+        return $this;
+    }
+
+    /**
+     * Get lft
+     *
+     * @return integer 
+     */
+    public function getLft()
+    {
+        return $this->lft;
+    }
+
+    /**
+     * Set rgt
+     *
+     * @param integer $rgt
+     * @return Catalog
+     */
+    public function setRgt($rgt)
+    {
+        $this->rgt = $rgt;
+    
+        return $this;
+    }
+
+    /**
+     * Get rgt
+     *
+     * @return integer 
+     */
+    public function getRgt()
+    {
+        return $this->rgt;
+    }
+
+    /**
+     * Set root
+     *
+     * @param integer $root
+     * @return Catalog
+     */
+    public function setRoot($root)
+    {
+        $this->root = $root;
+    
+        return $this;
+    }
+
+    /**
+     * Get root
+     *
+     * @return integer 
+     */
+    public function getRoot()
+    {
+        return $this->root;
+    }
+
+    /**
+     * Set level
+     *
+     * @param integer $level
+     * @return Catalog
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+    
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return integer 
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \Apollo\CatalogBundle\Entity\Catalog $parent
+     * @return Catalog
+     */
+    public function setParent(\Apollo\CatalogBundle\Entity\Catalog $parent = null)
+    {
+        $this->parent = $parent;
+    
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \Apollo\CatalogBundle\Entity\Catalog 
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Add children
+     *
+     * @param \Apollo\CatalogBundle\Entity\Catalog $children
+     * @return Catalog
+     */
+    public function addChildren(\Apollo\CatalogBundle\Entity\Catalog $children)
+    {
+        $this->children[] = $children;
+    
+        return $this;
+    }
+
+    /**
+     * Remove children
+     *
+     * @param \Apollo\CatalogBundle\Entity\Catalog $children
+     */
+    public function removeChildren(\Apollo\CatalogBundle\Entity\Catalog $children)
+    {
+        $this->children->removeElement($children);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Add translations
+     *
+     * @param \Apollo\CatalogBundle\Entity\CatalogTranslation $translations
+     * @return Catalog
+     */
+    public function addTranslation(\Apollo\CatalogBundle\Entity\CatalogTranslation $t)
+    {
+        if (!$this->translations->contains($t)) {
+            $this->translations[] = $t;
+            $t->setObject($this);
+        }
+        
+        return $this;
+    }
+
+    /**
+     * Remove translations
+     *
+     * @param \Apollo\CatalogBundle\Entity\CatalogTranslation $translations
+     */
+    public function removeTranslation(\Apollo\CatalogBundle\Entity\CatalogTranslation $translations)
+    {
+        $this->translations->removeElement($translations);
+    }
+
+    /**
+     * Get translations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+    
+    public function __toString() {
+        return $this->getTitle();
+    }
+
+    /**
+     * Add images
+     *
+     * @param \Apollo\CatalogBundle\Entity\CatalogImage $images
+     * @return Catalog
+     */
+    public function addImage(\Apollo\CatalogBundle\Entity\CatalogImage $images)
+    {
+        if (!$this->images->contains($images)) {
+            $this->images[] = $images;
+            $images->setCatalog($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove images
+     *
+     * @param \Apollo\CatalogBundle\Entity\CatalogImage $images
+     */
+    public function removeCatalogImage(\Apollo\CatalogBundle\Entity\CatalogImage $images)
+    {
+        $this->images->removeElement($images);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * Remove images
+     *
+     * @param \Apollo\CatalogBundle\Entity\CatalogImage $images
+     */
+    public function removeImage(\Apollo\CatalogBundle\Entity\CatalogImage $images)
+    {
+        $this->images->removeElement($images);
+    }
+
+    /**
+     * Add files
+     *
+     * @param \Apollo\CatalogBundle\Entity\CatalogFile $files
+     * @return Catalog
+     */
+    public function addFile(\Apollo\CatalogBundle\Entity\CatalogFile $files)
+    {
+        if (!$this->files->contains($files)) {
+            $this->files[] = $files;
+            $files->setCatalog($this);
+        }
+    
+        return $this;
+    }
+
+    /**
+     * Remove files
+     *
+     * @param \Apollo\CatalogBundle\Entity\CatalogFile $files
+     */
+    public function removeFile(\Apollo\CatalogBundle\Entity\CatalogFile $files)
+    {
+        $this->files->removeElement($files);
+    }
+
+    /**
+     * Get files
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+
+    /**
+     * Set catalog_type
+     *
+     * @param \Apollo\CatalogBundle\Entity\CatalogType $catalogType
+     * @return Catalog
+     */
+    public function setCatalogType(\Apollo\CatalogBundle\Entity\CatalogType $catalogType = null)
+    {
+        $this->catalog_type = $catalogType;
+    
+        return $this;
+    }
+
+    /**
+     * Get catalog_type
+     *
+     * @return \Apollo\CatalogBundle\Entity\CatalogType 
+     */
+    public function getCatalogType()
+    {
+        return $this->catalog_type;
+    }
+}

@@ -1,0 +1,175 @@
+frontend_proxy_submit_form:
+    pattern:  /proxy/submit_form
+    defaults: { _controller: FrontendContentBundle:Proxy:submitForm }
+
+frontend_callback_new_registration:
+    pattern: /registration_loyalty_program
+    defaults: { _controller: FrontendContentBundle:Callback:newRegistration, alias: "registration_loyalty_program"}
+    
+frontend_callback_create_registration:
+    pattern: /registration_loyalty_program/create
+    defaults: { _controller: FrontendContentBundle:Callback:createRegistration, alias: "registration_loyalty_program"}
+
+frontend_callback_created_registration:
+    pattern: /registration_loyalty_program/created
+    defaults: { _controller: FrontendContentBundle:Callback:callbackRegistrationCreated, alias: "registration_loyalty_program_created"}
+
+frontend_callback_new:
+    pattern: /sale_esser_by_honeywell
+    defaults: { _controller: FrontendContentBundle:Callback:new, alias: "sale_esser_by_honeywell"}
+    
+frontend_callback_create:
+    pattern: /sale_esser_by_honeywell/create
+    defaults: { _controller: FrontendContentBundle:Callback:create, alias: "sale_esser_by_honeywell"}
+
+frontend_callback_created:
+    pattern: /sale_esser_by_honeywell/created
+    defaults: { _controller: FrontendContentBundle:Callback:callbackCreated, alias: "sale_esser_by_honeywell_created"}
+    
+frontend_mailer_confirmed:
+    pattern: /mailer/confirmed_mail
+    defaults: { _controller: FrontendContentBundle:Content:show, alias: "confirmed_mail"}
+
+frontent_mailer_confirm_mail:
+    pattern: /mailer/confirm/{id}/{confirmCode}
+    defaults: { _controller: FrontendContentBundle:Mailer:Confirm } 
+    requirements:
+      id:  \d+
+#      confirmCode: \{a-zA-Z0-9}+
+  
+frontend_mailer_subscribe:
+    pattern: /mailer/subscribe
+    defaults: { _controller: FrontendContentBundle:Mailer:requestSubscribe}
+    
+#frontend_content_test:
+#    pattern:  /test
+#    defaults: { _controller: FrontendContentBundle:Content:test }
+
+homepageOLD:
+    pattern:   /page
+    defaults:  { _controller: FrontendContentBundle:Content:show, alias: "homepage" }    
+
+frontend_content_license:
+    pattern:  /license
+    defaults: { _controller: FrontendContentBundle:ImageGallery:index, alias: 'license' }
+
+frontend_content_recommendation:
+    pattern:  /recommendation
+    defaults: { _controller: FrontendContentBundle:ImageGallery:index, alias: 'recommendation' }
+    
+frontend_content_certificates:
+    pattern:  /certificate
+    defaults: { _controller: FrontendContentBundle:ImageGallery:index, alias: 'certificate' }
+    
+frontend_content_certificates2:
+    pattern:  /sertificat
+    defaults: { _controller: FrontendContentBundle:ImageGallery:index, alias: 'sertificat' }
+
+frontend_gallery:
+    pattern:  /image_gallery/{alias}
+    defaults: { _controller: FrontendContentBundle:ImageGallery:index }
+
+frontend_review_new_form:
+    pattern: /form_reviews
+    defaults: { _controller: FrontendContentBundle:Review:FormReview }
+
+frontend_review_form:
+    pattern: /create_reviews
+    defaults: { _controller: FrontendContentBundle:Review:CreateReview }
+    
+frontend_reviews:
+    pattern: /reviews
+    defaults: { _controller: FrontendContentBundle:Review:ListReview }
+    
+frontend_reviews2:
+    pattern: /company/reviews
+    defaults: { _controller: FrontendContentBundle:Review:ListReview }
+    
+request_callback:
+    pattern:  /request_callback
+    defaults: { _controller: FrontendContentBundle:Callback:requestCallback }
+  
+wifinder_frontend_site_map:
+    pattern:  /sitemap
+    defaults: { _controller: FrontendContentBundle:Menu:siteMap }
+wifinder_frontend_site_map:
+    pattern:  /sitemap.{_format}
+    defaults: { _controller: FrontendContentBundle:Menu:siteMap, _format: html }
+
+
+frontend_search_content:
+    pattern:  /content/search
+    defaults: { _controller: FrontendContentBundle:Content:seacheResult }
+  
+wifinder_frontend_catalog_show:
+    pattern:  /catalog/{category}/{alias}
+    defaults: { _controller: FrontendContentBundle:Catalog:show }
+    
+frontend_search_catalog:
+    pattern:  /catalog/search/{page}
+    defaults: { _controller: FrontendContentBundle:Catalog:seacheResult, page: 1 }
+
+wifinder_frontend_catalog:
+    pattern:  /catalog/{alias}
+    defaults: { _controller: FrontendContentBundle:Catalog:index, alias: 'catalog' }
+
+wifinder_frontend_news_list_categories:
+    pattern:  /news
+    defaults: { _controller: FrontendContentBundle:News:ShowListCategories }
+
+wifinder_frontend_news_category:
+    pattern:  /news/{category}
+    defaults: { _controller: FrontendContentBundle:News:ShowCategory }
+    
+wifinder_frontend_news_item:
+    pattern:  /news/{category}/{alias}
+    defaults: { _controller: FrontendContentBundle:News:ShowNews }
+
+wifinder_frontend_projects:
+    pattern:  /projects
+    defaults: { _controller: FrontendContentBundle:Project:ShowListProjects }
+
+wifinder_frontend_projects_reset_filter:
+    pattern:  /projects/year/reset
+    defaults: { _controller: FrontendContentBundle:Project:ResetFilterProject }
+    
+wifinder_frontend_projects_filter:
+    pattern:  /projects/year/{year}
+    defaults: { _controller: FrontendContentBundle:Project:FilterProject }
+    
+wifinder_frontend_projects_item:
+    pattern:  /projects/{alias}
+    defaults: { _controller: FrontendContentBundle:Project:ShowProject }
+
+frontend_content_order:
+    pattern:  /order/{alias}
+    defaults: { _controller: FrontendContentBundle:Content:order}
+    
+frontend_content:
+    pattern:  /{alias}
+    defaults: { _controller: FrontendContentBundle:Content:show}
+    
+frontend_content_tree1:
+    pattern:  /{category}/{alias}
+    defaults: { _controller: FrontendContentBundle:Content:show }
+    
+frontend_content_tree2:
+    pattern:  /{category1}/{category2}/{alias}
+    defaults: { _controller: FrontendContentBundle:Content:show }
+    
+frontend_content_tree3:
+    pattern:  /{category1}/{category2}/{category3}/{alias}
+    defaults: { _controller: FrontendContentBundle:Content:show }
+    
+frontend_content_tree4:
+    pattern:  /{category1}/{category2}/{category3}/{category4}/{alias}
+    defaults: { _controller: FrontendContentBundle:Content:show }
+
+frontend_content_tree5:
+    pattern:  /{category1}/{category2}/{category3}/{category4}/{category5}/{alias}
+    defaults: { _controller: FrontendContentBundle:Content:show }
+    
+
+homepage:
+    pattern:   /
+    defaults:  { _controller: FrontendContentBundle:Content:show, alias: "homepage" }

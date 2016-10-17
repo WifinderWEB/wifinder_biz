@@ -1,0 +1,75 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans with {'%title%' : entity.title } from "admin" %}News Item edit - "%title%"{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans with {'%title%' : entity.title  } from "admin" %}News Item edit - "%title%"{% endtrans %}{% endblock %}
+
+{% block stylesheets %}
+    {{parent()}}
+    <link href="{{ asset('/css/jquery-ui-1.10.2.custom.min.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('/css/prettyPhoto.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+    
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{ asset('/js/jquery-ui-1.9.2.custom.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/i18n/jquery.ui.datepicker-ru.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/jquery.maskedinput.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/jquery.prettyPhoto.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $().ready(function(){
+            $.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
+            var y = {{ "now"|date("Y") }};
+            var m = {{ "now"|date("m") }};
+            var d = {{ "now"|date("d") }};
+            $( "#newsbundle_newsitemtype_end_date" ).datepicker({ dateFormat: 'dd.mm.yy', minDate: new Date(y, m - 1, d)})
+            .mask("99.99.9999", { placeholder: "_" });
+            $( "#newsbundle_newsitemtype_publish" ).datepicker({ dateFormat: 'dd.mm.yy', minDate: new Date(y, m - 1, d)})
+            .mask("99.99.9999", { placeholder: "_" });
+    
+            FormAction.singleEditFormPrettyPhoto('admin_image');
+        })
+    </script>
+{% endblock %}
+    
+{% block content %}
+    <form action="{{ path('admin_news_item_update', { 'category_id' : category_id, 'id': entity.id }) }}" method="post" {{ form_enctype(form) }} class="main_form">
+        <div class="tabbable">
+            <ul class="nav nav-tabs" id="content-tabs">
+                <li><a href="#field-row-content"><i class="icon-align-left"></i> {% trans from "admin" %}Base content{% endtrans %}</a></li>
+                <li><a href="#field-row-images"><i class="icon-picture"></i> {% trans from "admin" %}Images{% endtrans %}</a></li>
+                <li><a href="#field-row-meta"><i class="icon-globe"></i> {% trans from "admin" %}Metadata{% endtrans %}</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane" id="field-row-content">
+                    {% include "NewsBundle:NewsItem:_createdInfo.html.twig" %}
+                    {{form_row(form.is_active)}}
+                    {{form_row(form.publish)}}
+                    {{form_row(form.end_date)}}
+                    {{form_row(form.category)}} 
+                    {{form_row(form.alias)}}     
+                    {{form_widget(form.translations) }}
+                    {{form_errors(form.translations) }}
+                </div>
+                <div class="tab-pane" id="field-row-images">
+                    {% include "NewsBundle:NewsItem:_tilesImages.html.twig" %}
+                </div>
+                <div class="tab-pane" id="field-row-meta">
+                    {{form_widget(form.meta) }}
+                    {{form_errors(form.meta) }}
+                </div>
+            </div>
+        </div>
+        {{ form_widget(form._token) }}
+        {{ form_widget(form.action) }}
+    </form>
+    <form action="{{ path('admin_news_item_delete', { 'category_id' : category_id, 'id': entity.id }) }}" method="post"  class="delete_form" id="delete_form_{{entity.id}}">
+        {{ form_widget(delete_form) }}
+    </form>
+
+    {% include "NewsBundle:NewsItem:_modalDelete.html.twig" with {'id' : entity.id, 'title' : entity.title}%}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "NewsBundle:NewsItem:_editFormActions.html.twig" %}
+{% endblock %}

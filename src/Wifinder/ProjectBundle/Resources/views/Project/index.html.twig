@@ -1,0 +1,43 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans from "admin" %}Project list{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin" %}Project list{% endtrans %}{% endblock %}
+
+{% block content %}
+    <table class="records_list table table-condensed table-hover table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>{% trans from "admin" %}Year{% endtrans %}</th>
+                <th>{% trans from "admin" %}Title{% endtrans %}</th>
+                <th>{% trans from "admin" %}Alias{% endtrans %}</th>
+                <th>{% trans from "admin" %}Sort{% endtrans %}</th>
+                <th>{% trans from "admin" %}Is active?{% endtrans %}</th>
+                <th>{% trans from "admin" %}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                <td>{{ entity.years }}</td>
+                <td>{{ entity.title }}</td>
+                <td>{{ entity.alias }}</td>
+                <td>{{ entity.sort }}</td>
+                <td>
+                    {% include "ProjectBundle:Project:_labelActive.html.twig" with {'entity':entity} %}
+                </td>
+                <td>
+                    {% include "ProjectBundle:Project:_listItemActions.html.twig" with {'entity' : entity, 'delete_form' : delete_form}%}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {# display navigation #}
+    {% include "ProjectBundle:Project:_pagination.html.twig" %}
+    {% include "ProjectBundle:Project:_filterForm.html.twig" %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "ProjectBundle:Project:_listActions.html.twig" %}
+{% endblock %}

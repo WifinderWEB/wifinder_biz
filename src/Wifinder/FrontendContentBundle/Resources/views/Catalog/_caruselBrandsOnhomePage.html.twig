@@ -1,0 +1,16 @@
+<div id="carousel_distributors">
+    <h2>{% trans from 'content'%}PARTNERSHIPS{% endtrans%}</h2>
+    <div class="slider4">
+        {% for one in content%}
+                {% for img in one.images%}
+                    {% if loop.index == 1%}
+                        <div class="slide"><a href="{{one.alias|localeLink("/catalog/")}}"><img src="{{img.webPath}}" alt="{{one.title}}"/></a></div>
+                    {% endif %}
+                {% endfor %}
+        {% endfor %}
+    </div>
+    <div id="carousel_distributors_control">
+        <div class="carousel_distributors_button" href="#myCarousel" id="slider_control_next"></div>
+        <div class="carousel_distributors_button" href="#myCarousel" id="slider_control_prev"></div>
+    </div>
+</div>

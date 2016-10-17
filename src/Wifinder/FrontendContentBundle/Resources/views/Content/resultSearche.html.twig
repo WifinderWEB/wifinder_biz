@@ -1,0 +1,23 @@
+{% extends 'FrontendContentBundle::_frontendContainer.html.twig' %}
+
+{% block title %}{% trans with {"%query%" : query } from 'content'%}Search result query - "%query%"{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans with {"%query%" : query } from 'content'%}Search result query - "%query%"{% endtrans %}{% endblock %}
+
+{% block breadCrumb %}{%endblock%}
+
+{% block content %}
+    {% if result|length > 0 %}
+        <ol>
+            {% for one in result %}
+                <li>
+                    <a href="{{path('frontend_content', {'alias':one.alias})}}">{{one.title}}</a>
+                    <p>{{one.content|striptags[:250]}}... <a href="{{path('frontend_content', {'alias':one.alias})}}">{% trans from 'content'%}more{% endtrans %}</a></p>
+                </li>
+            {% endfor %}
+        </ol>
+   {% else%}
+        <p>{% trans from 'content'%}Sorry, but your search did not match any page.{% endtrans %}<br/>
+           {% trans from 'content'%}Edit the keywords and try again.{% endtrans %}</p>
+   {% endif %}
+{% endblock %}

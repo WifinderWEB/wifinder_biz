@@ -1,0 +1,26 @@
+<div id="callbackModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">{% trans from 'content'%}Form request a callback{% endtrans %}</h3>
+    </div>
+    <div class="modal-body" id="callback_form">
+        <script type="text/javascript" src="http://formz.diplom48.ru/api/getJS/wf.form.min.js"></script>
+        <script type="text/javascript">
+                var wf1 = new WfForm();
+                wf1.SetOptions({
+                       form: 'wifinder_callback',
+                       container: 'wifinder_callback_form',
+                       redirect_url: 'http://wifinder.biz/'
+                });
+                wf1.Init.Module();
+        </script>
+        <div id="wifinder_callback_form"></div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">
+            <i class="icon-remove"></i> {% trans from "content" %}Cansel{% endtrans %}</button>
+        <button class="btn btn-wifinder" id="button_callback_form" type="submit" form="wf_form_wifinder_callback">
+            <i class="icon-trash icon-white"></i> {% trans from "content" %}Submit{% endtrans %}
+        </button>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{ asset('/css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('/css/admin.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <!--[if gte IE 9]>
+            <style type="text/css">
+              .gradient {
+                 filter: none;
+              }
+            </style>
+        <![endif]-->
+    </head>
+    <body>
+        
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="row-fluid" id="header">
+                    <div class="span12">
+                        {% render(controller( "MenuBundle:Menu:mainMenu", {"alias" : "admin"})) %}
+                    </div>
+                </div>
+                <div class="row-fluid" id="main"> 
+                    <div class="span2">
+                        <div id="sidebar_left">
+                            <h4>{% trans from "admin" %}Base action{% endtrans %}</h4>
+                            {% block sidebar %}{% endblock %}
+                        </div>
+                    </div>
+                    <div class="span10">
+                        {% block body %}{% endblock %}
+                        {% block javascripts %}
+                            <script src="{{ asset('/js/jquery-1.9.1.js') }}" type="text/javascript"></script>
+                            <script src="{{ asset('/js/bootstrap.min.js') }}" type="text/javascript"></script>
+                            <script src="{{ asset('/js/bootstrap-tooltip.js') }}" type="text/javascript"></script>
+                            <script src="{{ asset('/js/admin.js') }}" type="text/javascript"></script>
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="row-fluid" id="footer">
+                    <p>{% trans from "admin" %}APOLLO world class fire solution{% endtrans %}</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

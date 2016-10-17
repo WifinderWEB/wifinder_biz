@@ -1,0 +1,47 @@
+{% extends 'FrontendContentBundle::_frontendContainerFullWidth.html.twig' %}
+
+{% block titlePage %}{% trans from 'content'%}News{% endtrans %}{% endblock %}
+
+{% block title %}
+    <title>{% trans from 'content'%}News{% endtrans %}</title>
+{% endblock %}
+{% block meta_description %}
+    <meta name="description" content="{% trans from 'content'%}News{% endtrans %}"/>
+{% endblock %}
+{% block meta_keywords %}
+    <meta name="keywords" content="{% trans from 'content'%}News{% endtrans %}/>
+{% endblock %}
+
+{% block breadCrumb %}
+    <ul class="breadcrumb">
+        <li><a href="{{"/"|localeLink}}">{% trans from 'content'%}Home page{% endtrans %}</a> <span class="divider">/</span></li>
+        <li class="active">{% trans from 'content'%}News{% endtrans %}</li>
+    </ul>
+{% endblock %}   
+    
+{% block content %}
+    <div id="news">
+        {% set i = 0%}
+        {% for one in categories %}
+            {% if i == 0%}
+            <div class="row-fluid">
+            {% endif %}
+                <div class="span6">
+                    <h2>{{one.title}}</h2>
+                    <div>{{one.description|raw}}</div>
+                    {% render(controller( "FrontendContentBundle:News:LastNewsCategory", {"category" : one.alias, "limit" : 3}))%}
+                    <div><a href="{{one.alias|localeLink("/news/")}}">{% trans from 'content'%}view all ...{% endtrans %}</a></div>
+                </div>
+             {% set i = i + 1 %}
+             {% if i == 2 %}
+             </div>
+             {% set i = 0 %}
+             {% endif %}
+        {% endfor %}
+            {% if i != 2 %}
+            </div>
+            {% endif %}
+        <div class="clear"></div>
+    </div>
+{% endblock %}
+

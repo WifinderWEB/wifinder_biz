@@ -1,0 +1,61 @@
+admin_catalog_default:
+  pattern:  /
+  defaults: { _controller: CatalogBundle:Catalog:index}
+  
+admin_catalog:
+  pattern:  /catalog
+  defaults: { _controller: CatalogBundle:Catalog:index}
+
+admin_catalog_new:
+  pattern:  /catalog/new
+  defaults: { _controller: CatalogBundle:Catalog:new}
+  
+admin_catalog_create:
+  pattern:  /catalog/create
+  defaults: { _controller: CatalogBundle:Catalog:create}
+  requirements:
+    _method:  POST
+    
+admin_catalog_edit:
+  pattern:  /catalog/{id}/edit
+  defaults: { _controller: CatalogBundle:Catalog:edit}
+  requirements:
+    id: \d+
+
+admin_catalog_update:
+  pattern:  /catalog/{id}/update
+  defaults: { _controller: CatalogBundle:Catalog:update}
+  requirements:
+    _method:  POST
+    id: \d+
+    
+admin_catalog_delete:
+  pattern:  /catalog/{id}/delete
+  defaults: { _controller: CatalogBundle:Catalog:delete}
+  requirements:
+    _method:  POST
+    id: \d+
+    
+admin_catalog_change_active:
+  pattern:  /catalog/changeActive
+  defaults: { _controller: CatalogBundle:Catalog:changeActive, active: 0 }
+
+admin_catalog_move_up:
+  pattern:  /catalog/{id}/move/up
+  defaults: { _controller: CatalogBundle:Catalog:moveUp}
+  requirements:
+    id:  \d+
+    
+admin_catalog_move_down:
+  pattern:  /catalog/{id}/move/down
+  defaults: { _controller: CatalogBundle:Catalog:moveDown}
+  requirements:
+    id:  \d+
+    
+admin_catalog_filter:
+  pattern:  /catalog/filter
+  defaults: { _controller: CatalogBundle:Catalog:filter}
+  
+admin_catalog_reset_filter:
+  pattern: /catalog/reset_filter
+  defaults: { _controller: CatalogBundle:Catalog:resetFilter}

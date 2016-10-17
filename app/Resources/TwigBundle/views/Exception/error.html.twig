@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}The server returned a "{{ status_code }} {{ status_text }}"{% endblock %}</title>
+        <meta name="title" content="{% block meta_title %}{% endblock %}"/>
+        <meta name="description" content="{% block meta_description %}{% endblock %}"/>
+        <meta name="keywords" content="{% block meta_keywords %}{% endblock %}"/>
+        {% block stylesheets %}
+            <link href="{{ asset('http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('/css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('/css/frontend.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('/js/shadowbox/shadowbox.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <!--[if gte IE 9]>
+            <style type="text/css">
+              .gradient {
+                 filter: none;
+              }
+            </style>
+        <![endif]-->
+    </head>
+    <body>
+        <div id="main_container">
+            <div class="row-fluid" id="header">
+                <div class="span12">
+                    <div class="float_block" id="logotype_block">
+                        <a href="/">
+                            <img src="/images/logotype.png" alt="Wifinder"/>
+                        </a>
+                    </div>
+                    <div class="float_block" id="slogan_block">
+                        {% render(controller("FrontendContentBundle:WebItem:renderItem", {"alias" : "slogan"})) %}
+                    </div>
+                    <div class="float_block" id="search_block">
+                        {% render(controller("FrontendContentBundle:Content:search")) %}
+                    </div>
+                    <div id="info_block">
+                        <div id="registration_box">
+                            <a class="login_link" href="#" onclick="alert('{% trans from 'content'%}Access is denied!{% endtrans %}')">{% trans from 'content'%}Login{% endtrans %}</a> | <a class="registration_link" href="#" onclick="alert('{% trans from 'content'%}Access is denied!{% endtrans %}')">{% trans from 'content'%}Registration{% endtrans %}</a>
+                        </div>
+                        <div id="language_switcher">
+                            {% render(controller("FrontendContentBundle:Menu:languageSwitcher", {'request' : app.request})) %}
+                        </div>
+                        <div id="contacts_box">
+                            {% render(controller("FrontendContentBundle:WebItem:renderItem", {"alias" : "phone"})) %}
+                        </div>
+                    </div>
+                </div>
+                {% render(controller("FrontendContentBundle:Menu:topMenu", {"alias" : "main"})) %}
+            </div>
+            {% block slider %}{% endblock %}
+            <div class="container-fluid" id="content">
+                <div class="row-fluid"> 
+                    <div id="error_content">   
+                        <h1>Oops! An Error Occurred</h1>
+                        <h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
+                    </div>
+                </div>
+            </div>
+            {% block carousel %}{% endblock %}
+            {% block news_homepage %}{% endblock %}
+            <div id="footer">
+                {% include "FrontendContentBundle:Content:_footer.html.twig" %}
+            </div>
+        </div>
+        
+        {% block javascripts %}
+            <script src="{{ asset('/js/jquery-1.9.1.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('/js/bootstrap.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('/js/jquery.treeview.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('/js/jquery.cookie.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('http://code.jquery.com/ui/1.10.2/jquery-ui.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('/js/shadowbox/shadowbox.js') }}" type="text/javascript"></script>
+            <script src="http://yandex.st/share/share.js" charset="utf-8" type="text/javascript"></script>
+            <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAuEWnU0Y7zzQr0xlyJ5sHoUOH2JWxc4OU&amp;sensor=true&amp;callback=initialize"></script>
+            <script src="{{ asset('/js/frontend.js') }}" type="text/javascript"></script>
+        {% endblock %}
+        {% render(controller("FrontendContentBundle:Callback:newCallback")) %}
+    </body>
+</html>

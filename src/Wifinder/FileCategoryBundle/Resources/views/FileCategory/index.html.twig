@@ -1,0 +1,46 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}FileCategory list{% endblock %}
+
+{% block titlePage %}FileCategory list{% endblock %}
+
+{% block content %}
+<table class="records_list table table-condensed table-hover table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Alias</th>
+            <th>Sort</th>
+            <th>Is_active</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.name }}</td>
+            <td>{{ entity.alias }}</td>
+            <td>{{ entity.sort }}</td>
+            <td>{{ entity.isactive }}</td>
+            <td>
+                <div class="btn-group">
+                    <a class="btn btn-small" href="{{ path('file_category_edit', { 'id': entity.id }) }}">
+                        <i class="icon-edit"></i>edit</a>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block sidebar %}
+<ul class="record_actions nav nav-tabs nav-stacked">
+    <li>
+        <a href="{{ path('file_category_new') }}">
+            <i class="icon-plus"></i> Create a new entry
+        </a>
+    </li>
+</ul>
+{% endblock %}
+

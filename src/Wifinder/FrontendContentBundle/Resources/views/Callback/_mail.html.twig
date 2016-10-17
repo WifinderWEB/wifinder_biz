@@ -1,0 +1,14 @@
+<h1>Заказан обратный звонок</h1>
+<p><b>Письмо сформировано:</b> {{entity.created|date('d/m/Y H:i')}}</p>
+<p><b>Пользователь:</b> {{entity.lastName}} {{entity.firstName}} {{entity.middleName}}</p>
+{% if entity.post | length > 0%}
+    <p><b>Пост:</b> {{entity.post}}</p>
+{% endif %}
+{% if entity.company | length > 0%}
+    <p><b>Компания:</b> {{entity.company}}</p>
+{% endif %}
+<p><b>Email:</b> {{entity.email}}</p>
+<p><b>Телефон:</b> {{entity.phone}}</p>
+<p><b>Текст сообщения:</b> {{entity.callbackText}}</p>
+<hr/>
+<p>Письмо сгенерировано автоматически.</p>

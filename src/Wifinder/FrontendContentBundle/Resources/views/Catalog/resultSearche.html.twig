@@ -1,0 +1,28 @@
+{% extends 'FrontendContentBundle::_frontendContainer.html.twig' %}
+
+{% block title %}{% trans with {"%query%" : query } from 'content'%}Search result query "%query%" in catalog{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans with {"%query%" : query } from 'content'%}Search result query "%query%" in catalog{% endtrans %}{% endblock %}
+
+{% block breadCrumb %}{%endblock%}
+
+{% block content %}
+    {% set count = result|length %}
+    {% if count > 0 %}
+        <p class="all_search_results">{% trans from 'content' %}All search results{% endtrans %} - <b>{{param.totalCount}}</b></p>
+        <ol start="{{param.firstItemNumber}}">
+            {% for one in result %}
+                <li>
+                    <a href="{{path('wifinder_frontend_catalog', {'alias':one.alias})}}">{{one.title}}</a>
+                    <p>{{one.shortDescription|striptags[:250]}}... <a href="{{path('wifinder_frontend_catalog', {'alias':one.alias})}}">{% trans from 'content'%}more{% endtrans %}</a></p>
+                </li>
+            {% endfor %}
+        </ol>
+        <div class="pagination pagination-small">
+            {{ result.render()|raw }}
+        </div>
+   {% else%}
+        <p>{% trans from 'content'%}Sorry, but your search did not match any page.{% endtrans %}<br/>
+           {% trans from 'content'%}Edit the keywords and try again.{% endtrans %}</p>
+   {% endif %}
+{% endblock %}

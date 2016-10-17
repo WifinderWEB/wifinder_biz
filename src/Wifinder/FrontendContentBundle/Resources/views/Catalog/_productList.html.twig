@@ -1,0 +1,32 @@
+{% if content %}
+    <div id="news">
+        <ul class="last_news">
+            {% for one in content%}
+                 <li class="item_brand">
+                     {% if one.catalogType.id == 1 %}
+                         <h2>{{one.title}}</h2>
+                         <div class="anons">
+                             {{ one.shortDescription|raw }}
+                         </div>
+                     {% else %}
+                        <h3 class="title_news">{{one.title}}</h3>
+                        <div class="anons">
+                            {% for img in one.images %}
+                                {% if loop.index == 1%}
+                                <img src="{{img.webPath | apply_filter('120x120_thumb')}}" alt="{{img.title}}"/>
+                                {% endif %}
+                            {% endfor %}
+                            {{ one.shortDescription|raw }}
+                             <div class="clear"></div>
+                        </div>
+                        <div class="text_right">
+                            <a href="{{ path('frontend_content_order', {'alias' : one.alias}) }}" class="align_left">Заказать коммерческое предложение</a>
+                            <a href="{{ path('wifinder_frontend_catalog_show', {'category': alias, 'alias' : one.alias}) }}">{% trans from 'content'%}more...{% endtrans %}</a>
+                        </div>  
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="clear"></div>     
+    </div>
+{% endif %}

@@ -1,0 +1,19 @@
+<ul class="breadcrumb">
+    {% set link = "/"%}
+    <li><a href="{{link|localeLink()}}">{% trans from 'content'%}Home page{% endtrans %}</a> <span class="divider">/</span></li>
+    {% if items|length > 0 %}
+        {% for item in items %}
+            {% set start = item.title|slice(0, 1)%}
+            {% set other = item.title|slice(1) %}
+            {% if item.alias != alias %}
+                <li><a href="{{ item.link|localeLink }}">{{ start|upper}}{{other|lower}}</a> <span class="divider">/</span></li>
+            {% else %}
+                <li class="active">{{ start|upper}}{{other|lower}}</li>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% if alias == 'reviews'%}
+            <li class="active">{% trans from 'content'%}Reviews{% endtrans %}</li>
+        {% endif %}
+    {% endif %}
+</ul>

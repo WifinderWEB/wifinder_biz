@@ -1,0 +1,31 @@
+{% extends '::_adminContainer.html.twig' %}
+
+{% block title %}{% trans from "admin"%}Layouts list{% endtrans %}{% endblock %}
+
+{% block titlePage %}{% trans from "admin"%}Layouts list{% endtrans %}{% endblock %}
+
+{% block content %}
+    <table class="records_list table table-condensed table-hover table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>{% trans from "admin" %}Name{% endtrans %}</th>
+                <th>{% trans from "admin" %}Description{% endtrans %}</th>
+                <th>{% trans from "admin" %}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.description }}</td>
+                <td>{% include "LayoutBundle:Layout:_listItemActions.html.twig" %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% include "LayoutBundle:Layout:_pagination.html.twig" %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "LayoutBundle:Layout:_listActions.html.twig" %}
+{% endblock %}

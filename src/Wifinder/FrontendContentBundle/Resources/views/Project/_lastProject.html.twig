@@ -1,0 +1,19 @@
+{% if items|length > 0 %}
+<ul class="last_news">
+    {% for item in items %}
+        <li>
+            <a href="{{item.alias|localeLink("/projects/")}}" class="title_news">{{item.title}}</a>
+            <div>
+            {% for img in item.images %}
+                {% if loop.index == 1%}
+                    <a href="{{item.alias|localeLink("/projects/")}}">
+                        <img src="{{img.webPath | apply_filter('220x220_thumb')}}" alt="{{img.title}}"/>
+                    </a>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+ <div class="text_right"><a href="{{"/projects"|localeLink}}">{% trans from 'content'%}View all projects »{% endtrans %}</a></div>
+{% endif %}

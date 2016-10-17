@@ -1,0 +1,19 @@
+<h1>{{title}}</h1>
+<hr/>
+<div>
+    {% for img in entity.images %}
+        {% if loop.index == 1%}
+        <div class="main_img">
+            <img src="{{img.webPath | apply_filter('550x319_thumb')}}" alt="{{img.title}}"/>
+        </div>
+        {% endif %}
+    {% endfor %}
+    {{anons|raw}}
+    <p><a href="{{host}}/news/{{entity.category.alias}}/{{entity.alias}}">Читать полностью.</a></p>
+</div>
+<hr/>
+<span class="footer">
+   <p>Сформировано автоматически. Пожалуйста, не отвечайте на это письмо.<br/>
+{#   Если вы не хотите получать эти эл. письма от Wifinder.biz <br/>пожалуйста, <a href="#">откажитесь от подписки</a>.#}
+       </p>
+</span>

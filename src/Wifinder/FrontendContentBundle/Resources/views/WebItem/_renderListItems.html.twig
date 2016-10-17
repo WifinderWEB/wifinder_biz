@@ -1,0 +1,9 @@
+{% if web_items != null%} 
+    {% for item in web_items %}
+        {% if item.isActive %}
+        <div>
+            {{item.content|raw}}
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
