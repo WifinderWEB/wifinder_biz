@@ -1,0 +1,76 @@
+#tab1, #tab2, #tab3{
+    position: absolute;
+    width: 220px;
+    background: url(../images/bg_tab.png) no-repeat right bottom;
+    padding: 0 6px 5px 0;
+    overflow: hidden;
+}
+#tab1{
+    margin-left: 0;
+}
+#tab1 .header h3{
+    padding-left: 83px;
+}
+#tab2{
+    margin-left: 180px;
+}
+#tab2 .header h3{
+    padding-left: 112px;
+}
+#tab3{
+    margin-left: 360px;
+}
+.tab-opacity1{
+    opacity: 1;
+}
+.tab-opacity2{
+    opacity: 0.7;
+}
+.tab-opacity3{
+    opacity: 0.5;
+}
+.tab-index1{
+    z-index: 3;
+}
+.tab-index2{
+    z-index: 2;
+}
+.tab-index3{
+    z-index: 1;
+}
+#tab3 .header h3{
+    padding-left: 72px;
+}
+.wfTab .header{
+    height: 30px;
+    background: url(../images/bg_header_tab_block2.png) repeat-x left top #808080;
+    cursor: pointer;
+}
+.wfTab.active .header{
+    background: url(../images/bg_header_tab_block.png) repeat-x left top #f07c21;
+}
+.wfTab .header h3{
+    font-size: 12px;
+    font-weight: 100;
+    line-height: 15px;
+    margin:0;
+    color: #fff;
+}
+.wfTab .content{
+    /*background:#e9e9e9;*/
+    padding: 7px;
+}
+.wfTab .content table{
+    width: 100%;
+    font-size: 12px;
+    line-height: 14px;
+}
+.wfTab .content table tr{
+    border-bottom: 1px solid #AFAFAF;
+}
+.wfTab .content table tr:last-child{
+    border: none;
+}
+.wfTab .content table tr td{
+    padding: 5px 0;
+}
