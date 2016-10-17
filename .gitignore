@@ -25,7 +25,7 @@
 
 # Assets and user uploads
 /web/bundles/
-/web/uploads/
+#/web/uploads/
 
 # PHPUnit
 /app/phpunit.xml
@@ -39,10 +39,9 @@
 
 ### Symfony Patch ###
 /web/bundles/
-/web/uploads/
-/web/css/
-/web/js/
+#/web/uploads/
+#/web/css/
+#/web/js/
 /web/components/
 /.idea
-
 /composer.lock
